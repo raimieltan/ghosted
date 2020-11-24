@@ -1,6 +1,5 @@
 import React, {Fragment, useState, useEffect } from 'react';
 
-
 const DisplayUsers = () => {
 
     const [users, setUsers ] = useState([])
@@ -8,7 +7,7 @@ const DisplayUsers = () => {
     const getUsers = async () => {
         try {
             
-            const response = await fetch("http://localhost:8000/")
+            const response = await fetch("http://192.168.12:8000/")
             const jsonData = await response.json();
 
             setUsers(jsonData)
@@ -21,12 +20,21 @@ const DisplayUsers = () => {
 
     useEffect( () => {
         getUsers();
-    }, [])
-
-    
+    })
 return <Fragment>
 <div>{users.map(user => {
-        return <p>Name: {user.first_name} {user.last_name}</p>
+    let imageSrc = require(`../pictures/${user.id}.jpg`)
+        return <div className='profile'>
+            <img src={imageSrc.default} alt="Girl in a jacket" width="250" height="350"/>
+            <div className='overlay'></div>
+            <p>{user.first_name}, {user.age} {user.location}</p>
+
+            <div className='action'>
+                <button>Ghost</button>
+                <button>Date</button>
+            </div>
+            
+            </div> 
 
 })}</div>
 </Fragment>;
