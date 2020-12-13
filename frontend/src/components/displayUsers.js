@@ -7,7 +7,7 @@ const DisplayUsers = () => {
     const getUsers = async () => {
         try {
             
-            const response = await fetch("http://192.168.12:8000/")
+            const response = await fetch("http://192.168.0.28:8000/")
             const jsonData = await response.json();
 
             setUsers(jsonData)
@@ -32,6 +32,7 @@ return <Fragment>
             <div className='action'>
                 <button>Ghost</button>
                 <button>Date</button>
+                <button>tar</button>
             </div>
             
             </div> 

@@ -1,4 +1,4 @@
-import pg from 'pg'
+const pg = require('pg')
 
 function connectDatabase(){
     const pool = new pg.Pool ({
@@ -11,4 +11,4 @@ function connectDatabase(){
     return pool
 }
 
-export default connectDatabase();
+module.exports = connectDatabase();

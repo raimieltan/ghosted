@@ -1,4 +1,4 @@
-import pool from '../pool.js'
+const pool = require('../pool.js')
 
 function listUsers(app,db){
     pool.connect( (err, client) => {
@@ -22,5 +22,4 @@ function listUsers(app,db){
         })
     })
 }
-
-export default listUsers;
+module.exports =  listUsers;

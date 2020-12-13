@@ -1,16 +1,19 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import pool from './pool.js'
-import listUsers from './routes/listUsers.js'
-import cors from 'cors'
+const bodyParser = require( 'body-parser');
+const pool = require('./pool.js')
+const listUsers = require('./routes/listUsers.js')
+const express = require("express")
+const app = express()
+const cors = require("cors")
 
-const app = express();
-
-app.use(bodyParser.urlencoded( {extended: true}))
+app.use(express.json())
 app.use(cors())
+app.use(bodyParser.urlencoded( {extended: true}))
 
+
+app.use("/auth" , require("./routes/jwtAuth.js"));
 
 let db;
+
 
 pool.connect( (err,client) => {
     if(err){
