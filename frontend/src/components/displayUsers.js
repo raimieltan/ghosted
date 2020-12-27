@@ -7,10 +7,11 @@ const DisplayUsers = () => {
     const getUsers = async () => {
         try {
             
-            const response = await fetch("http://192.168.0.28:8000/")
+            const response = await fetch("http://localhost:8000/")
             const jsonData = await response.json();
 
             setUsers(jsonData)
+            // console.log(users)
             
 
         } catch (error) {
@@ -22,12 +23,14 @@ const DisplayUsers = () => {
         getUsers();
     })
 return <Fragment>
-<div>{users.map(user => {
-    let imageSrc = require(`../pictures/${user.id}.jpg`)
+<div>
+
+    {users.map(user => {
+    // let imageSrc = require(`../pictures/${user.id}.jpg`)
         return <div className='profile'>
-            <img src={imageSrc.default} alt="Girl in a jacket" width="250" height="350"/>
+            {/* <img src={imageSrc.default} alt="Girl in a jacket" width="250" height="350"/> */}
             <div className='overlay'></div>
-            <p>{user.first_name}, {user.age} {user.location}</p>
+            <p>{user.user_first_name}</p>
 
             <div className='action'>
                 <button>Ghost</button>
@@ -37,7 +40,8 @@ return <Fragment>
             
             </div> 
 
-})}</div>
+})}
+</div>
 </Fragment>;
 };
 

@@ -12,6 +12,8 @@ app.use(bodyParser.urlencoded( {extended: true}))
 
 app.use("/auth" , require("./routes/jwtAuth.js"));
 
+app.use("/dashboard", require("./routes/dashboard.js"))
+
 let db;
 
 
