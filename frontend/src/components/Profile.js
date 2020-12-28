@@ -1,11 +1,12 @@
 import React, {useState , useEffect } from "react"
-
+import { Link } from 'react-router-dom'
 
 const Profile = ( {setAuth} ) => {
 
     const [first_name, setFirstName] = useState("")
     const [last_name, setLastName] = useState("")
     const [age, setAge] = useState("")
+    const [bio, setBio] = useState("")
 
     async function getName() {
         try {
@@ -19,6 +20,7 @@ const Profile = ( {setAuth} ) => {
             setFirstName(parseRes.user_first_name)
             setLastName(parseRes.user_last_name)
             setAge(parseRes.user_age)
+            setBio(parseRes.user_bio)
         } catch (error) {
             console.error(error.message)
         }
@@ -35,10 +37,12 @@ const Profile = ( {setAuth} ) => {
     }, [])
 
     return (
-        <div>
-            <p>{first_name} {last_name} </p>
+        <div className="text-center my-5"> 
+            <p >{first_name} {last_name} </p>
             <p>{age}</p>
+            <p>{bio}</p>
             <button className= "btn btn-primary" onClick= {e => logout(e)}>Logout</button>
+            <Link to= "/dashboard">Dashboard</Link>
 
         </div>
     )

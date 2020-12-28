@@ -1,5 +1,4 @@
 import './App.css';
-import ListUsers from './components/displayUsers.js'
 import Dashboard from './components/Dashboard.js'
 import Login from './components/Login.js'
 import Register from './components/Register.js'
