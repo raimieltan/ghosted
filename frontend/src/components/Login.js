@@ -49,7 +49,7 @@ const Login = ( {setAuth} ) => {
         }
     }
     return (
-        <div>
+        <div className = "container">
             <h1 className= "text-center my-5"> Login</h1>
             <form onSubmit = {onSubmitForm}>
                 <input type="email" name="email" placeholder="email" className="form-control my-3" value = {email} onChange = {e => onChange(e)} />
@@ -57,7 +57,10 @@ const Login = ( {setAuth} ) => {
                 <button className = "btn btn-success btn-block">Login</button>
                
             </form>
+            <div className ="text-center my-5">
             <Link to="/register">Register</Link>
+            </div>
+            
         </div>
     )
 }

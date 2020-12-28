@@ -26,7 +26,7 @@ const DisplayUsers = () => {
         getUsers();
     })
 return <Fragment>
-<div>
+<div className ="container text-center my-5">
 
     {users.map(user => {
     // let imageSrc = require(`../pictures/${user.id}.jpg`)

@@ -56,7 +56,7 @@ const Register = ( { setAuth }) => {
         }
     }
     return (
-        <div>
+        <div className = "container">
             <h1 className= "text-center my-5">Register</h1>
             <form onSubmit = {onSubmitForm}>
                 <input type="text" name="first_name" placeholder="first_name" className="form-control my-3" value = {first_name} onChange = {e => onChange(e)}/>

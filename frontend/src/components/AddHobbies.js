@@ -36,7 +36,7 @@ const AddHobby = () => {
 
 
     return (
-        <div>
+        <div className = "container">
             <form onSubmit = {onSubmitForm}>
                 <input type="hobby_content" name="hobby_content" placeholder="hobby" className="form-control my-3" value = {hobby_content} onChange = {e => onChange(e)} />
               

@@ -14,7 +14,7 @@ const Dashboard = ( {setAuth} ) => {
 
 
     return (
-        <div>
+        <div className = "container">
       
             <Link to="/profile">Profile</Link>
             <button className= "btn btn-primary" onClick= {e => logout(e)}>Logout</button>

@@ -1,4 +1,3 @@
-import './App.css';
 import Dashboard from './components/Dashboard.js'
 import Login from './components/Login.js'
 import Register from './components/Register.js'
