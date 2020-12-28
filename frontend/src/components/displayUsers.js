@@ -4,14 +4,17 @@ const DisplayUsers = () => {
 
     const [users, setUsers ] = useState([])
 
+
     const getUsers = async () => {
         try {
             
-            const response = await fetch("http://localhost:8000/")
+            const response = await fetch("http://localhost:8000/users", {
+                headers:{ token: localStorage.token}
+            })
             const jsonData = await response.json();
 
             setUsers(jsonData)
-            // console.log(users)
+            
             
 
         } catch (error) {
@@ -35,7 +38,6 @@ return <Fragment>
             <div className='action'>
                 <button>Ghost</button>
                 <button>Date</button>
-                <button>tar</button>
             </div>
             
             </div> 

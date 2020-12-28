@@ -1,4 +1,5 @@
 import React, {useState , useEffect } from "react"
+import ListUsers from './displayUsers.js'
 
 const Dashboard = ( {setAuth} ) => {
 
@@ -34,6 +35,7 @@ const Dashboard = ( {setAuth} ) => {
             <h1>Hello {name}</h1>
             <button className= "btn btn-primary" onClick= {e => logout(e)}>Logout</button>
 
+            <ListUsers/>
         </div>
     )
 }

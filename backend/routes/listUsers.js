@@ -1,25 +1,18 @@
-const pool = require('../pool.js')
+const router = require("express").Router()
+const pool = require("../pool")
+const authorization = require("../middleware/authorization")
 
-function listUsers(app,db){
-    pool.connect( (err, client) => {
-        if(err){
-            console.log(err)
-        }
-        else{
-            db = client
-        }
-    })
+router.get("/" , authorization, async( req, res ) => {
+    try {
+        
+        const users = await pool.query("SELECT * FROM users WHERE user_id != $1", [req.user])
 
-    app.get('/', (request, response) => {
-        db.query(`SELECT * FROM users`, (err, result) => {
-            if(err){
-                console.log(err)
-            }
-            else {
-                const { rows: users } = result;
-                response.json(users)
-            }
-        })
-    })
-}
-module.exports =  listUsers;
+        res.json(users.rows)
+
+
+    } catch (error) {
+        console.error(error.message)
+        res.status(500).json(error.message)
+    }
+})
+module.exports =  router;

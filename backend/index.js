@@ -14,6 +14,8 @@ app.use("/auth" , require("./routes/jwtAuth.js"));
 
 app.use("/dashboard", require("./routes/dashboard.js"))
 
+app.use("/users/", require("./routes/listUsers.js"))
+
 let db;
 
 
@@ -29,5 +31,3 @@ pool.connect( (err,client) => {
         })
     }   
 } )
-
-listUsers(app, db)
