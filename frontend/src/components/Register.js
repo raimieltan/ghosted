@@ -1,4 +1,6 @@
 import React, {useState} from "react"
+import { Link } from "react-router-dom"
+import { toast } from "react-toastify"
 
 const Register = ( { setAuth }) => {
 
@@ -33,9 +35,19 @@ const Register = ( { setAuth }) => {
             
             const parseRes = await response.json()
 
+            if(parseRes.token) {
+                localStorage.setItem("token", parseRes.token)
+                setAuth(true)
+                toast.success("Registered Successfully")
             
-            localStorage.setItem("token", parseRes.token)
-            setAuth(true)
+            }
+            else{
+                setAuth(false)
+                toast.error(parseRes)
+            }
+
+            
+
 
         } catch (error) {
             console.error(error.message)
@@ -53,6 +65,7 @@ const Register = ( { setAuth }) => {
                
                 <button className = "btn-success btn-block">Submit</button>
             </form>
+            <Link to="/login">Login</Link>
         </div>
     )
 }

@@ -9,7 +9,12 @@ import {
   Route,
   Redirect
 } from "react-router-dom"
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useEffect } from 'react';
+
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure()
 
 function App() {
 
@@ -18,6 +23,26 @@ function App() {
   const setAuth = (boolean) => {
     setIsAuthenticated(boolean)
   }
+
+  async function isAuth() {
+    try {
+      
+      const response = await fetch("http://localhost:8000/auth/is-verify" , {
+        headers: { token: localStorage.token}
+      })
+
+      const parseRes = await response.json()
+
+
+      parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false)
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
+
+  useEffect( () => {
+    isAuth()
+  })
 
   return (
     <Fragment>
