@@ -17,7 +17,7 @@ router.post('/register', validator, async (req, res) => {
         // user_password ,
         // user_email 
 
-        const{ first_name, last_name, age, email, password } = req.body
+        const{ first_name, last_name, age, gender, bio, email, password } = req.body
        
         //check if the user exist
 
@@ -34,8 +34,8 @@ router.post('/register', validator, async (req, res) => {
         const bcryptPassword = await bcrypt.hash(password, salt);
 
         //enter new user in the database
-        const newUser = await pool.query("INSERT INTO users(user_first_name, user_last_name, user_age, user_email, user_password) VALUES($1, $2, $3, $4, $5) RETURNING *", [
-            first_name, last_name, age, email, bcryptPassword
+        const newUser = await pool.query("INSERT INTO users(user_first_name, user_last_name, user_age, user_gender, user_bio, user_email, user_password) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *", [
+            first_name, last_name, age, gender, bio, email, bcryptPassword
         ])
 
         //generate JWT

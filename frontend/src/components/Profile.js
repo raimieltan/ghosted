@@ -1,5 +1,7 @@
 import React, {useState , useEffect } from "react"
 import { Link } from 'react-router-dom'
+import Hobbies from "./Hobbies.js";
+import AddHobby from "./AddHobbies.js"
 
 const Profile = ( {setAuth} ) => {
 
@@ -41,7 +43,10 @@ const Profile = ( {setAuth} ) => {
             <p >{first_name} {last_name} </p>
             <p>{age}</p>
             <p>{bio}</p>
+            <Hobbies />
+            <AddHobby />
             <button className= "btn btn-primary" onClick= {e => logout(e)}>Logout</button>
+            
             <Link to= "/dashboard">Dashboard</Link>
 
         </div>
