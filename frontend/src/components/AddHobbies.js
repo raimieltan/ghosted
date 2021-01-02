@@ -14,6 +14,7 @@ const AddHobby = () => {
     
 
     const onSubmitForm = async(e) => {
+        e.preventDefault()
         const body = { hobby_content }
 
         try {
