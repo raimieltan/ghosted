@@ -3,6 +3,8 @@ import Login from './components/Login.js'
 import Register from './components/Register.js'
 import Profile from './components/Profile.js'
 
+
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -54,6 +56,7 @@ function App() {
             <Route exact path="/register" render={props => !isAuthenticated ? <Register {...props} setAuth = {setAuth} /> : <Redirect to="/login" />} />
             <Route exact path="/dashboard" render={props => isAuthenticated ?  <Dashboard {...props} setAuth = {setAuth} /> : <Redirect to="/login" />} />
             <Route exact path="/profile" render={props => isAuthenticated ?  <Profile {...props} setAuth = {setAuth} /> : <Redirect to="/login" />} />
+ 
           </Switch>
         </div>
       </Router>

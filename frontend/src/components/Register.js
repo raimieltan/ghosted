@@ -7,7 +7,7 @@ const Register = ( { setAuth }) => {
     const [inputs, setInputs] = useState({
         first_name: "",
         last_name: "",
-        age: 0,
+        age: "",
         gender: "",
         bio: "",
         email: "",
@@ -61,7 +61,7 @@ const Register = ( { setAuth }) => {
             <form onSubmit = {onSubmitForm}>
                 <input type="text" name="first_name" placeholder="first_name" className="form-control my-3" value = {first_name} onChange = {e => onChange(e)}/>
                 <input type="text" name="last_name" placeholder="last_name" className="form-control my-3" value = {last_name} onChange = {e => onChange(e)} />
-                <input type="number" name="age" placeholder="0" className="form-control my-3" value = {age} onChange = {e => onChange(e)} />
+                <input type="number" name="age" placeholder="age" className="form-control my-3" value = {age} onChange = {e => onChange(e)} />
                 {/* <input type="text" name="gender" placeholder="gender" className="form-control my-3" value = {gender} onChange = {e => onChange(e)}/> */}
                 <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" type="gender" name="gender" value = {gender} onChange = {e => onChange(e)} >
                     <option selected>Open this gender menu</option>

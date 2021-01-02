@@ -18,6 +18,7 @@ app.use("/users/", require("./routes/listUsers.js"))
 
 app.use("/hobby", require("./routes/hobbies.js"))
 
+app.use("/connections" , require("./routes/connections.js"))
 
 let db;
 

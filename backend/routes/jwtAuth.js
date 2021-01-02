@@ -9,7 +9,7 @@ const authorization = require("../middleware/authorization")
 router.post('/register', validator, async (req, res) => {
     try {
 
-        console.log(req)
+    
         // destructure req.body
         // user_first_name ,
         // user_last_name ,
@@ -50,7 +50,7 @@ router.post('/register', validator, async (req, res) => {
 })
 
 //login
-router.post("/login", validator, async (req, res) => {
+router.post("/login", async (req, res) => {
     try {
 
         const { email, password } = req.body;
@@ -60,13 +60,13 @@ router.post("/login", validator, async (req, res) => {
         ])
 
         if(user.rows.length === 0) {
-            return res.status(401).json(("Password or Email is incorrect 1"))
+            return res.status(401).json(("Password or Email is incorrect"))
         }
 
         const validPassword = await bcrypt.compare(password, user.rows[0].user_password)
 
         if(!validPassword){
-            return res.status(401).json("Password or Email is incorrect 2")
+            return res.status(401).json("Password or Email is incorrect")
         }
         
         const token = jwtGenerator(user.rows[0].user_id)

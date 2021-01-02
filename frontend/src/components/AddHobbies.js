@@ -11,6 +11,7 @@ const AddHobby = () => {
     const onChange = (e) => {
         setInputs( {...inputs, [e.target.name] : e.target.value})
     }
+    
 
     const onSubmitForm = async(e) => {
         const body = { hobby_content }

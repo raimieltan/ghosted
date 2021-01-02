@@ -2,6 +2,7 @@ import React, {Fragment, useState, useEffect } from 'react';
 
 const DisplayUsers = () => {
 
+
     const [users, setUsers ] = useState([])
 
 
@@ -11,14 +12,45 @@ const DisplayUsers = () => {
             const response = await fetch("http://localhost:8000/users", {
                 headers:{ token: localStorage.token}
             })
-            const jsonData = await response.json();
 
-            setUsers(jsonData)
+            const existing = await fetch("http://localhost:8000/connections/show", {
+                headers: {token: localStorage.token}
+            })
+
+            const users_existing = await existing.json()
+            
+            const users = await response.json();
+            
+            for(let i = 0; i < users_existing.length; i++){
+                for(let j = 0; j < users.length; j++){
+                    if(users[j].user_id === users_existing[i].user_id){
+                        users.splice(j , 1)
+                    }
+                }
+            }
+
+            setUsers(users)
             
             
 
         } catch (error) {
             console.log(error.message)
+        }
+    }
+
+    const dateUser = async (id) => {
+        try {
+            const date = await fetch(`http://localhost:8000/connections/add/${id}`, {
+                method: "POST",
+                headers: {
+                    "Content-type" : "application/json",
+                    token: localStorage.token }
+            })
+
+            setUsers(users.filter(user => user.user_id !== id))
+
+        } catch (error) {
+            console.error(error.message)
         }
     }
 
@@ -30,17 +62,16 @@ return <Fragment>
 
     {users.map(user => {
     // let imageSrc = require(`../pictures/${user.id}.jpg`)
-        return <div className='profile'>
-            {/* <img src={imageSrc.default} alt="Girl in a jacket" width="250" height="350"/> */}
-            <div className='overlay'></div>
-            <p>{user.user_first_name}</p>
+        return <div key = {user.user_id} className = "container">
+                   
+                        <div className='profile'>
+                                <p>{user.user_first_name}</p>
 
-            <div className='action'>
-                <button>Ghost</button>
-                <button>Date</button>
-            </div>
-            
-            </div> 
+                                <button className = "btn btn-success btn-block" onClick={() => dateUser(user.user_id)}>Date</button>
+               
+                         </div> 
+           
+              </div>
 
 })}
 </div>
