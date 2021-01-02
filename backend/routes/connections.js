@@ -2,13 +2,31 @@ const router = require('express').Router()
 const pool = require('../pool.js')
 const authorization = require("../middleware/authorization.js")
 
-router.get("/show", authorization, async (req, res) => {
+router.get("/show/following", authorization, async (req, res) => {
     try {
         const connections = await pool.query(`
         select c.conn_id, u.user_first_name, u.user_last_name, u.user_id, u.user_age
         from connections as c 
             inner join users as u 
                 on c.user2_id = u.user_id  where user1_id = $1`, [req.user])
+
+                
+        res.json(connections.rows)
+
+
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send(error.message)
+    }
+})
+
+router.get("/show/followers", authorization, async (req, res) => {
+    try {
+        const connections = await pool.query(`
+        select c.conn_id, u.user_first_name, u.user_last_name, u.user_id, u.user_age
+        from connections as c 
+            inner join users as u 
+                on c.user1_id = u.user_id  where user2_id = $1`, [req.user])
 
                 
         res.json(connections.rows)
@@ -35,6 +53,7 @@ router.post("/add/:id" , authorization, async (req, res) => {
             const newConnection = await pool.query("INSERT INTO connections VALUES(default, $1, $2)" , [
                 req.user, id
             ])
+
 
         }
 

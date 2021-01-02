@@ -6,9 +6,9 @@ const { route } = require('./connections.js')
 router.get("/retrieve/:id" ,async (req, res) => {
     try {
         const { id } = req.params
-        const messages = await pool.query("SELECT * FROM messages where conn_id = $1", [id])
+        const messages = await pool.query("SELECT m.message_id, u.user_first_name, m.message_content, m.message_date FROM messages as m INNER JOIN users as u on m.user_id = u.user_id  where conn_id = $1", [id])
         
-        res.json(messages)
+        res.json(messages.rows)
         res.status(200).send("Messages retrieved")
 
     } catch (error) {

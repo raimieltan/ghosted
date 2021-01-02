@@ -33,7 +33,7 @@ const DisplayUsers = () => {
             
             
 
-        } catch (error) {
+        } catch (error) {  
             console.log(error.message)
         }
     }
