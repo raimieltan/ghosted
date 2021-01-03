@@ -19,7 +19,8 @@ const Profile = ( {setAuth} ) => {
 
             const parseRes = await response.json()
             console.log(parseRes)
-
+            localStorage.setItem("user_id", parseRes.user_id)
+            console.log(localStorage.user_id)
             setFirstName(parseRes.user_first_name)
             setLastName(parseRes.user_last_name)
             setAge(parseRes.user_age)
@@ -50,6 +51,7 @@ const Profile = ( {setAuth} ) => {
             
             <Following />
             <Link to= "/dashboard">Dashboard</Link>
+            <Link to= "/mail">Mail</Link>
 
         </div>
     )

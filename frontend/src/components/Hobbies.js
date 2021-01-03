@@ -20,11 +20,11 @@ const DisplayHobbies = () => {
 
     useEffect( () => {
         getHobbies();
-    })
+    }, [])
 
     return <div>
         {hobbies.map( hobby => {
-            return <div>
+            return <div key={hobby.hobby_id}>
                 <p>{hobby.hobby_content}</p>
             </div>
         })}

@@ -20,7 +20,9 @@ app.use("/hobby", require("./routes/hobbies.js"))
 
 app.use("/connections" , require("./routes/connections.js"))
 
-app.use("/messages" , require("./routes/messages.js"))
+app.use("/mail" , require("./routes/mail.js"))
+
+
 
 let db;
 

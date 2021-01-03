@@ -13,7 +13,7 @@ const DisplayUsers = () => {
                 headers:{ token: localStorage.token}
             })
 
-            const existing = await fetch("http://localhost:8000/connections/show", {
+            const existing = await fetch("http://localhost:8000/connections/show/following", {
                 headers: {token: localStorage.token}
             })
 
@@ -29,6 +29,7 @@ const DisplayUsers = () => {
                 }
             }
 
+      
             setUsers(users)
             
             
@@ -56,7 +57,7 @@ const DisplayUsers = () => {
 
     useEffect( () => {
         getUsers();
-    })
+    }, [])
 return <Fragment>
 <div className ="container text-center my-5">
 
