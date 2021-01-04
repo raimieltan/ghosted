@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-//this middleware will on continue on if the token is inside the local storage
+//this middleware will continue on if the token is inside the local storage
 
 const authorization = (req, res, next) => {
   // Get token from header

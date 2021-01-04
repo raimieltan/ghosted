@@ -2,11 +2,10 @@ const router = require("express").Router();
 const pool = require("../pool.js")
 const bcrypt = require("bcrypt")
 const jwtGenerator = require("../jwt/jwtGenerator")
-const validator = require("../middleware/validator")
 const authorization = require("../middleware/authorization")
 
 //Register
-router.post('/register', validator, async (req, res) => {
+router.post('/register', async (req, res) => {
     try {
 
     
@@ -77,12 +76,5 @@ router.post("/login", async (req, res) => {
     }
 })
 
-router.get("/is-verify",authorization, async (req, res) => {
-    try {
-        res.json(true)
-    } catch (error) {
-        console.log(error.message)
-        res.status(500).send("Server Error")
-    }
-})
+
 module.exports = router;

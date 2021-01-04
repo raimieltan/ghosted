@@ -62,7 +62,7 @@ return <Fragment>
 <div className ="container text-center my-5">
 
     {users.map(user => {
-    // let imageSrc = require(`../pictures/${user.id}.jpg`)
+
         return <div key = {user.user_id} className = "container">
                    
                         <div className='profile'>

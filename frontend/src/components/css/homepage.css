@@ -1,0 +1,32 @@
+body {
+    background-size: auto;
+    background-color: black;
+    background-repeat: no-repeat;
+    background-image: url('../ui_photos/background.jpg') ;
+}
+
+.trademark {
+    margin: 0;
+    position: absolute;
+    text-align: center;
+    top: 40%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    color: whitesmoke;
+    
+}
+
+.position_center {
+    margin: 0;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.register {
+    border-radius: 50px;
+    width: 250px;
+}

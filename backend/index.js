@@ -26,6 +26,7 @@ app.use("/mail" , require("./routes/mail.js"))
 
 app.use("/uploads", require('./routes/upload.js'))
 
+app.use("/photos" , require("./routes/photos.js"))
 
 
 let db;

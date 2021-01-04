@@ -1,0 +1,23 @@
+.topBar {
+    color: white;
+    display: flex;
+}
+.logo {
+    
+    margin-top: 10px;
+    margin-left: 10px;
+    color: white;
+}
+.title {
+    position: absolute;
+    margin-left: 90px;
+    top: 3%
+}
+
+.login {
+    position: absolute;
+    top: 2.5%;
+    right: 15px;
+    width: 100px;
+    height: 30px;
+}
