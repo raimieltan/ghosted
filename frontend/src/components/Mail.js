@@ -28,7 +28,7 @@ const Mail = () => {
             {mails.map( mail => {
                 return <div key={mail.message_id}>
                     <p>{mail.message_content}</p>
-            <       p>{mail.created_at}</p>
+                    <p>{mail.created_at}</p>
                     </div>
             }) }
         </div>

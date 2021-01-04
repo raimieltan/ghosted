@@ -18,9 +18,7 @@ const Profile = ( {setAuth} ) => {
             })
 
             const parseRes = await response.json()
-            console.log(parseRes)
-            localStorage.setItem("user_id", parseRes.user_id)
-            console.log(localStorage.user_id)
+
             setFirstName(parseRes.user_first_name)
             setLastName(parseRes.user_last_name)
             setAge(parseRes.user_age)

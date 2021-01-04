@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {
-    Link
-  } from "react-router-dom"
+import SendBoo from "./SendBoo.js"
 
 const Following = () => {
 
@@ -53,6 +51,7 @@ const Following = () => {
         {following.map ( follows => {
             return <div key={follows.user_id} className="container">
                 <p> { follows.user_first_name + " " + follows.user_last_name + " " + follows.user_age}</p>
+                <SendBoo user_id={follows.user_id}/>
             </div>
         })}
 
