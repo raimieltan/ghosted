@@ -1,9 +1,9 @@
 const bodyParser = require( 'body-parser');
 const pool = require('./pool.js')
-const listUsers = require('./routes/listUsers.js')
 const express = require("express")
 const app = express()
 const path = require('path')
+
 const cors = require("cors");
 
 
@@ -27,6 +27,8 @@ app.use("/mail" , require("./routes/mail.js"))
 app.use("/uploads", require('./routes/upload.js'))
 
 app.use("/photos" , require("./routes/photos.js"))
+
+app.use("/groups", require("./routes/groups.js"))
 
 
 let db;

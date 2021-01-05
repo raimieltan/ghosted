@@ -8,7 +8,7 @@ const authorization = require("../middleware/authorization.js")
 router.get("/show", authorization, async (req, res) => {
     try {
 
-        const hobbies = await pool.query("SELECT * FROM hobby WHERE user_id = $1", [req.user])
+        const hobbies = await pool.query("SELECT * FROM hobbies WHERE user_id = $1", [req.user])
 
         res.json(hobbies.rows)
         
@@ -24,7 +24,7 @@ router.post("/add" ,authorization, async (req, res ) => {
 
         const { hobby_content } = req.body
 
-        const newHoby = await pool.query("INSERT INTO hobby VALUES(default, $1, $2) RETURNING *" , [
+        const newHoby = await pool.query("INSERT INTO hobbies VALUES(default, $1, $2) RETURNING *" , [
             hobby_content, req.user
         ])
         

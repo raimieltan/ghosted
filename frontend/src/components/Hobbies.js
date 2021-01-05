@@ -5,7 +5,7 @@ const DisplayHobbies = () => {
 
     const getHobbies = async () => {
         try {
-            const response = await fetch("http://localhost:8000/hobby/show" , {
+            const response = await fetch("http://localhost:8000/hobbies/show" , {
                 headers: {token: localStorage.token }
             })
 

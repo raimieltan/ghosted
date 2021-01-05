@@ -19,7 +19,7 @@ const AddHobby = () => {
 
         try {
 
-            const response = await fetch("http://localhost:8000/hobby/add", {
+            const response = await fetch("http://localhost:8000/hobbies/add", {
                 method: "POST",
                 headers: {
                     "Content-type" : "application/json",

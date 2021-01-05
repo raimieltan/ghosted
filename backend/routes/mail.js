@@ -4,7 +4,7 @@ const authorization = require("../middleware/authorization")
 
 router.get("/retrieve" , authorization, async( req, res ) => {
     try {
-        const mail = await pool.query("SELECT * FROM message WHERE receiver_id = $1" , [
+        const mail = await pool.query("SELECT * FROM messages WHERE receiver_id = $1" , [
             req.user
         ])
 
@@ -22,7 +22,7 @@ router.post("/send/:id" ,authorization, async(req, res) => {
         const { id } = req.params
         const { message } = req.body
 
-        const newMail = await pool.query("INSERT INTO message VALUES(default, $1, $2, $3)" , [req.user, id, message])
+        const newMail = await pool.query("INSERT INTO messages VALUES(default, $1, $2, $3)" , [req.user, id, message])
 
         res.json("Mail sent")
         
