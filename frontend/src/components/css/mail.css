@@ -1,0 +1,32 @@
+.mail-main-container {
+    position: absolute;
+
+}
+.mail-container {
+    margin-bottom: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    
+    
+}
+.mail-info {
+    display: flex;
+    margin-left: 30px;
+    
+}
+
+.mail-image {
+    border-radius: 120px;
+    display: block;
+
+}
+
+.mail-date {
+    margin-left: 30px;
+}
+
+.mail-content {
+    margin-top: 30px;
+}

@@ -6,12 +6,12 @@ router.get("/show/following" , authorization, async (req, res) => {
     try {
 
         const following = await pool.query(`
-        select u.user_id,p.pic_src,u.user_bio, u.user_first_name, u.user_last_name, user_age 
-        from connections as c 
-            inner join users as u 
+        SELECT u.user_id,p.pic_src,u.user_bio, u.user_first_name, u.user_last_name, user_age 
+        FROM connections as c 
+            INNER JOIN users as u 
                 on c.user2_id = u.user_id 
-        inner join pictures as p on c.user2_id = p.user_id   
-        where c.user1_id = $1 and p.pic_type = 'profile'` , [req.user])
+            INNER JOIN pictures as p on c.user2_id = p.user_id   
+        WHERE c.user1_id = $1 and p.pic_type = 'profile'` , [req.user])
 
         res.json(following.rows)
         
@@ -25,11 +25,12 @@ router.get("/show/followers" , authorization, async (req, res) => {
     try {
 
         const following = await pool.query(`
-        select u.user_id, u.user_first_name, u.user_last_name, user_age 
-            from connections as c 
-                inner join users as u 
+        SELECT u.user_id, p.pic_src, u.user_bio, u.user_first_name, u.user_last_name, user_age 
+            FROM connections as c 
+                INNER JOIN users as u 
                     on c.user1_id = u.user_id 
-            where c.user2_id = $1` , [req.user])
+                INNER JOIN pictures as p on c.user2_id = p.user_id
+            WHERE c.user2_id = $1 and p.pic_type = 'profile'` , [req.user])
 
         res.json(following.rows)
         
@@ -46,7 +47,7 @@ router.post("/add/:id",authorization, async(req, res) => {
         const { id } = req.params
     
         //check if there is a previous connection
-        const session = await pool.query("select * from connections where user1_id = $1 and user2_id = $2" , [req.user , id])
+        const session = await pool.query("SELECT * FROM connections WHERE user1_id = $1 and user2_id = $2" , [req.user , id])
         //make connection id
 
         if(session.rows.length > 0){

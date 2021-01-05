@@ -7,6 +7,7 @@ const Following = () => {
 
     const [following, setFollowing] = useState([])
     const [followers, setFollowers] = useState([])
+    const [matches , setMatches] = useState([])
 
 
 
@@ -47,7 +48,27 @@ const Following = () => {
     useEffect( () => {
         getDataFollowing();
         getDataFollowers();
+        
     }, [])
+
+    useEffect( () => {
+        const match = []
+
+        followers.forEach( (people_following) => {
+            following.forEach( (people_followers) => {
+                
+                if(people_followers.user_id === people_following.user_id){
+                   
+                    match.push(people_followers)
+                }
+            })
+        })
+
+        setMatches(match)
+       
+    }, [followers, following])
+
+
 
 
     return <div className="following-container">
@@ -58,10 +79,10 @@ const Following = () => {
                 <img src="https://www.randomdoggiegenerator.com/randomdoggie.php" class="card-pic d-block" width="250px" height="400px" alt="..."/>
                 <p>Name here Name here Name here</p>
             </div>
-            {following.map ( follows => {
+            {matches.map ( follows => {
             return <div key={follows.user_id} className="carousel-item">
                 <PeopleCard name={follows.user_first_name} age={follows.user_age} id={follows.user_id} bio={follows.user_bio} pic={follows.pic_src}  />
-               
+                <SendBoo user_id={follows.user_id} />
             </div>
         })}
             </div>

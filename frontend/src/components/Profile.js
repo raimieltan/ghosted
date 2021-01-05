@@ -5,6 +5,7 @@ import AddHobby from "./AddHobbies.js"
 import Following from './Following.js'
 import Upload from './UploadPhoto'
 import PeopleCard from './Peoplecard'
+import Mail from './Mail.js'
 
 import "./css/profile.css"
 
@@ -64,10 +65,18 @@ const Profile = ( {setAuth} ) => {
     useEffect( () => {
         getName()
         getProfilePhoto()
-    })
+    }, [])
 
     return (
-        <div className="container">
+        <div>
+
+<div class="sidenav">
+<Mail />
+</div>            
+      
+    
+            <div className="main-container">
+            
             <div className="profile-container container text-center my-5"> 
                 <div className="profile-info">
                 <img src={`http://localhost:8000/img/${profilePic}`} className="profile-pic" alt="profile" width="100px" height="100px"></img>
@@ -86,13 +95,15 @@ const Profile = ( {setAuth} ) => {
             
             <Upload type={type} />
             <Link to= "/dashboard">Dashboard</Link>
-            <Link to= "/mail">Mail</Link>
+       
 
         </div>
         <Following />
         {/* <PeopleCard name={first_name} age={age} id={user_id} bio={bio} pic={profilePic} /> */}
 
         </div>
+        </div>
+
         
     )
 }

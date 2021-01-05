@@ -2,8 +2,12 @@ body {
     background-size: auto;
     background-color: rgb(15, 14, 14);
     background-repeat: no-repeat;
+    color: white;
 }
 
+.modal {
+    background-color: black;
+}
 .trademark {
     margin: 0;
     position: absolute;

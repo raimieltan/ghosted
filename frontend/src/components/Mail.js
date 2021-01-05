@@ -1,5 +1,5 @@
 import React, {useState, useEffect } from 'react'
-
+import "./css/mail.css"
 const Mail = () => {
     const [mails, setMails ] = useState([])
 
@@ -21,14 +21,19 @@ const Mail = () => {
 
     useEffect( () => {
         getMail()
-    }, [])
+    })
 
     return (
-        <div>
+        <div className="mail-main-container">
             {mails.map( mail => {
-                return <div key={mail.message_id}>
-                    <p>{mail.message_content}</p>
-                    <p>{mail.created_at}</p>
+                return <div key={mail.message_id} className="mail-container" key={mail.message_id}>
+                    <div className="mail-info">
+                        <img className="mail-image" src={`http://localhost:8000/img/${mail.pic_src}`} width="50px" height="50px"></img>
+                        <p className="mail-name">{mail.user_first_name}:</p>
+                        <h6 className="mail-content">{mail.message_content}</h6>
+                    </div>
+
+                    <p className="mail-date">{mail.created_at}</p>
                     </div>
             }) }
         </div>

@@ -27,7 +27,7 @@ const PeopleCard = ( { name, age , bio, id, pic} ) => {
 
     useEffect( () => {
         getRating(id)
-    })
+    }, [])
     
     return (
         <div className="people-container">

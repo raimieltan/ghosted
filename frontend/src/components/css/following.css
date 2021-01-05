@@ -1,6 +1,10 @@
 .following-container {
     color: white;
     border: 1px solid red;
+    width: 60%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .people-card {
@@ -19,9 +23,17 @@
       
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 450px) {
     .carousel-item {
         width: 100%;
     }
 
+    .following-container {
+        color: white;
+        border: 1px solid red;
+        width: 100%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
   }

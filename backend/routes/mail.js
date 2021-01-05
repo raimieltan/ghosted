@@ -4,7 +4,13 @@ const authorization = require("../middleware/authorization")
 
 router.get("/retrieve" , authorization, async( req, res ) => {
     try {
-        const mail = await pool.query("SELECT * FROM messages WHERE receiver_id = $1" , [
+        const mail = await pool.query(`SELECT p.pic_src, u.user_first_name, m.message_content, m.created_at
+        FROM messages as m
+        INNER JOIN pictures AS p
+        ON p.user_id = m.sender_id
+        INNER JOIN users as u
+        ON u.user_id = m.sender_id
+        WHERE p.pic_type = 'profile' AND receiver_id = $1`, [
             req.user
         ])
 
