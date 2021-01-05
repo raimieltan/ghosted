@@ -1,8 +1,7 @@
 body {
     background-size: auto;
-    background-color: black;
+    background-color: rgb(15, 14, 14);
     background-repeat: no-repeat;
-    background-image: url('../ui_photos/background.jpg') ;
 }
 
 .trademark {

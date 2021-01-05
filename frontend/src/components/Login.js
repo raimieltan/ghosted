@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import { Link } from "react-router-dom"
 import { toast } from "react-toastify"
 
-
+import "./css/login.css"
 
 const Login = ( {setAuth} ) => {
 
@@ -49,16 +49,16 @@ const Login = ( {setAuth} ) => {
         }
     }
     return (
-        <div className = "container">
-            <h1 className= "text-center my-5"> Login</h1>
+        <div className = "login-container container">
+            <h1 className= "text-center my-5 login-title">LOGIN</h1>
             <form onSubmit = {onSubmitForm}>
                 <input type="email" name="email" placeholder="email" className="form-control my-3" value = {email} onChange = {e => onChange(e)} />
                 <input type="password" name="password" placeholder="password" className="form-control my-3" value = {password} onChange = {e => onChange(e)}/>
-                <button className = "btn btn-success btn-block">Login</button>
+                <button className = "login-btn btn-danger btn-block">LOGIN</button>
                
             </form>
             <div className ="text-center my-5">
-            <Link to="/register">Register</Link>
+            <Link to="/register"><button type="button" className="btn btn-light register-btn">REGISTER</button></Link>
             </div>
             
         </div>

@@ -18,7 +18,7 @@ app.use("/dashboard", require("./routes/dashboard.js"))
 
 app.use("/users/", require("./routes/listUsers.js"))
 
-app.use("/hobby", require("./routes/hobbies.js"))
+app.use("/hobbies", require("./routes/hobbies.js"))
 
 app.use("/connections" , require("./routes/connections.js"))
 
@@ -29,6 +29,8 @@ app.use("/uploads", require('./routes/upload.js'))
 app.use("/photos" , require("./routes/photos.js"))
 
 app.use("/groups", require("./routes/groups.js"))
+
+app.use("/ratings" , require('./routes/ratings.js'))
 
 
 let db;

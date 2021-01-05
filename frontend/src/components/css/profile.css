@@ -1,0 +1,20 @@
+.profile-container {
+    color: white;
+}
+
+.profile-info {
+    border: 1px solid red;
+    text-align: left;
+    display: flex;
+}
+
+.profile-pic{
+
+    border-radius: 180px;
+    margin-right: 25px;
+    margin-top: 10px;
+}
+
+.text-infos {
+    margin-top: 13px;
+}

@@ -2,6 +2,7 @@ import React, {useState} from "react"
 import { Link } from "react-router-dom"
 import { toast } from "react-toastify"
 
+import './css/register.css'
 const Register = ( { setAuth }) => {
 
     const [inputs, setInputs] = useState({
@@ -56,15 +57,15 @@ const Register = ( { setAuth }) => {
         }
     }
     return (
-        <div className = "container">
+        <div className = "register-container container">
             <h1 className= "text-center my-5">Register</h1>
             <form onSubmit = {onSubmitForm}>
-                <input type="text" name="first_name" placeholder="first_name" className="form-control my-3" value = {first_name} onChange = {e => onChange(e)}/>
-                <input type="text" name="last_name" placeholder="last_name" className="form-control my-3" value = {last_name} onChange = {e => onChange(e)} />
+                <input type="text" name="first_name" placeholder="first name" className="form-control my-3" value = {first_name} onChange = {e => onChange(e)}/>
+                <input type="text" name="last_name" placeholder="last name" className="form-control my-3" value = {last_name} onChange = {e => onChange(e)} />
                 <input type="number" name="age" placeholder="age" className="form-control my-3" value = {age} onChange = {e => onChange(e)} />
                 {/* <input type="text" name="gender" placeholder="gender" className="form-control my-3" value = {gender} onChange = {e => onChange(e)}/> */}
-                <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" type="gender" name="gender" value = {gender} onChange = {e => onChange(e)} >
-                    <option selected>Open this gender menu</option>
+                <select className="gender-form form-select form-select-lg mb-3" aria-label=".form-select-lg example" type="gender" name="gender" value = {gender} onChange = {e => onChange(e)} >
+                    <option selected>GENDER</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                 </select>
@@ -72,9 +73,10 @@ const Register = ( { setAuth }) => {
                 <input type="email" name="email" placeholder="email" className="form-control my-3" value = {email} onChange = {e => onChange(e)}/>
                 <input type="password" name="password" placeholder="password" className="form-control my-3" value = {password} onChange = {e => onChange(e)}/>
                
-                <button className = "btn-success btn-block">Submit</button>
+                <button className = "btn-danger btn-block">Submit</button>
             </form>
-            <Link to="/login">Login</Link>
+
+            <Link to="/login"><button type="button" className="login-btn btn btn-sm btn-light login-btn">LOGIN</button></Link>
         </div>
     )
 }

@@ -4,22 +4,29 @@ const authorization = require('../middleware/authorization')
 
 //get ratings
 
-router.get("/retrieve", authorization, async (req,res) => {
+router.get("/retrieve/:id", authorization, async (req,res) => {
 
     try {
 
+        const { id } = req.params
+
     //query
-    const ratings = await pool.query("SELECT * FROM ratings where user_id = $1" , [req.user])
+    const ratings = await pool.query("SELECT * FROM ratings where user_id = $1" , [id])
 
-    const ratings_array = ratings.rows
+   
+    // console.log(typeof(ratings_array[0].rating))
     //get average
+    
+    
+  
+    const average = (ratings.rows.reduce( (total, next) =>  total + next.rating , 0) ) / ratings.rows.length
 
-    const average = (ratings_array.reduce( (a, b) => a + b, 0)) / ratings_array.length
+  
 
 
 
     //res.json
-    res.json(average)
+    res.json(average.toFixed(2))
         
     } catch (error) {
         console.error(error.message)
@@ -48,3 +55,6 @@ router.post("/rate/:id", authorization, async(req, res) => {
     }
 
 } )
+
+
+module.exports = router;

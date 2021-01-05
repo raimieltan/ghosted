@@ -8,7 +8,13 @@ router.get("/retrieve/:type" , authorization, async (req, res) => {
         const { type } = req.params
         const photos= await pool.query("SELECT * FROM pictures where pic_type = $1 and user_id =$2" ,[type, req.user])
 
-        res.json(photos.rows)
+        if(type == 'posts'){
+            res.json(photos.rows)
+        }
+        else{
+            res.json(photos.rows[0])
+        }
+        
         
     } catch (error) {
         console.error(error.message)

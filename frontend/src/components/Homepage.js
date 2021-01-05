@@ -11,6 +11,8 @@ const Homepage = () => {
             <h1 className="trademark display-1">GHOSTED</h1>
             <Link to="/register"><button className="btn btn-danger btn-lg position_center register">CREATE ACCOUNT</button></Link>
             
+
+
         </div>
     )
 }

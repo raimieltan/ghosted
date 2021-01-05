@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom'
 import Hobbies from "./Hobbies.js";
 import AddHobby from "./AddHobbies.js"
 import Following from './Following.js'
+import Upload from './UploadPhoto'
+import PeopleCard from './Peoplecard'
+
+import "./css/profile.css"
 
 const Profile = ( {setAuth} ) => {
 
@@ -10,7 +14,27 @@ const Profile = ( {setAuth} ) => {
     const [last_name, setLastName] = useState("")
     const [age, setAge] = useState("")
     const [bio, setBio] = useState("")
+    const [profilePic, setProfilePic] = useState("")
+    const [user_id , setUserId] = useState()
 
+    const type = "profile"
+    
+
+    async function getProfilePhoto(){
+        try {
+            const response = await fetch("http://localhost:8000/photos/retrieve/profile", {
+                headers: {token: localStorage.token}
+            })
+
+            const parseRes = await response.json()
+
+            setProfilePic(parseRes.pic_src)
+
+            
+        } catch (error) {
+            console.error(error.message)
+        }
+    }
     async function getName() {
         try {
             const response = await fetch("http://localhost:8000/dashboard/", {
@@ -23,6 +47,9 @@ const Profile = ( {setAuth} ) => {
             setLastName(parseRes.user_last_name)
             setAge(parseRes.user_age)
             setBio(parseRes.user_bio)
+            setUserId(parseRes.user_id)
+
+          
         } catch (error) {
             console.error(error.message)
         }
@@ -36,22 +63,37 @@ const Profile = ( {setAuth} ) => {
 
     useEffect( () => {
         getName()
-    }, [])
+        getProfilePhoto()
+    })
 
     return (
-        <div className="text-center my-5"> 
-            <p >{first_name} {last_name} </p>
-            <p>{age}</p>
-            <p>{bio}</p>
-            <Hobbies />
-            <AddHobby />
+        <div className="container">
+            <div className="profile-container container text-center my-5"> 
+                <div className="profile-info">
+                <img src={`http://localhost:8000/img/${profilePic}`} className="profile-pic" alt="profile" width="100px" height="100px"></img>
+                    <div className="text-infos">
+                        <h3 className="name display-6">{first_name} {last_name}</h3>
+                        <p>{bio}</p>
+                    </div>
+
+
+                </div>
+        
+            {/* <Hobbies />
+            <AddHobby /> */}
             <button className= "btn btn-primary" onClick= {e => logout(e)}>Logout</button>
             
-            <Following />
+            
+            <Upload type={type} />
             <Link to= "/dashboard">Dashboard</Link>
             <Link to= "/mail">Mail</Link>
 
         </div>
+        <Following />
+        {/* <PeopleCard name={first_name} age={age} id={user_id} bio={bio} pic={profilePic} /> */}
+
+        </div>
+        
     )
 }
 
