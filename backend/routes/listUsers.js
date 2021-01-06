@@ -5,7 +5,11 @@ const authorization = require("../middleware/authorization")
 router.get("/" , authorization, async( req, res ) => {
     try {
         
-        const users = await pool.query("SELECT * FROM users WHERE user_id != $1 and user_gender != (SELECT user_gender from users WHERE user_id = $1)", [req.user])
+        const users = await pool.query(`SELECT u.user_id, p.pic_src, u.user_bio, u.user_first_name, u.user_last_name, user_age 
+        FROM users as u
+            INNER JOIN pictures as p on u.user_id = p.user_id
+        WHERE u.user_id != $1 and p.pic_type = 'profile' 
+        and u.user_gender !=  (SELECT user_gender from users WHERE user_id = $1)`, [req.user])
 
         res.json(users.rows)
 
@@ -16,3 +20,4 @@ router.get("/" , authorization, async( req, res ) => {
     }
 })
 module.exports =  router;
+

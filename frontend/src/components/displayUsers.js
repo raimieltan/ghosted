@@ -1,4 +1,5 @@
 import React, {Fragment, useState, useEffect } from 'react';
+import PeopleCard from "./Peoplecard"
 
 const DisplayUsers = () => {
 
@@ -64,14 +65,10 @@ return <Fragment>
     {users.map(user => {
 
         return <div key = {user.user_id} className = "container">
-                   
-                        <div className='profile'>
-                                <p>{user.user_first_name}</p>
 
-                                <button className = "btn btn-success btn-block" onClick={() => dateUser(user.user_id)}>Date</button>
-               
-                         </div> 
-           
+                         <PeopleCard 
+                         name={user.user_first_name} age={user.user_age} bio={user.user_bio} id={user.user_id} pic={user.pic_src} />
+                        <button className = "btn btn-success btn-block" onClick={() => dateUser(user.user_id)}>Date</button>
               </div>
 
 })}

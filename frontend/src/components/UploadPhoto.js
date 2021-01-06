@@ -8,11 +8,19 @@ const UploadPhoto = ({ type }) => {
     };
 
     const sendImage = async (event) => {
+  
         try {
 
             let formData = new FormData();
 
             formData.append("my-image", image)
+            const deletePrevious = await fetch('http://localhost:8000/photos/delete', {
+                method: "DELETE",
+                headers: {
+                    token: localStorage.token
+                }
+            })
+
     
             const newImage = await fetch(`http://localhost:8000/uploads/${type}` ,{
                 method: "POST",
@@ -22,6 +30,9 @@ const UploadPhoto = ({ type }) => {
                 body: formData,
     
             })
+
+
+
             
         } catch (error) {
             console.error(error.message)
@@ -32,7 +43,7 @@ const UploadPhoto = ({ type }) => {
     return(
         <div>
                 <input type="file" onChange={fileOnChange}></input>
-                <button onClick={sendImage}>Upload</button>
+    <button onClick={sendImage}>Upload:{type}</button>
         </div>
 
     )

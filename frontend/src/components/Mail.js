@@ -21,12 +21,12 @@ const Mail = () => {
 
     useEffect( () => {
         getMail()
-    })
+    }, [])
 
     return (
         <div className="mail-main-container">
             {mails.map( mail => {
-                return <div key={mail.message_id} className="mail-container" key={mail.message_id}>
+                return <div key={mail.message_id} className="mail-container">
                     <div className="mail-info">
                         <img className="mail-image" src={`http://localhost:8000/img/${mail.pic_src}`} width="50px" height="50px"></img>
                         <p className="mail-name">{mail.user_first_name}:</p>

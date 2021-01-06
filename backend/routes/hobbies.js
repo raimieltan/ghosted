@@ -5,10 +5,10 @@ const authorization = require("../middleware/authorization.js")
 
 //get hobbies
 
-router.get("/show", authorization, async (req, res) => {
+router.get("/show/:id", async (req, res) => {
     try {
-
-        const hobbies = await pool.query("SELECT * FROM hobbies WHERE user_id = $1", [req.user])
+        const { id } = req.params
+        const hobbies = await pool.query("SELECT * FROM hobbies WHERE user_id = $1", [id])
 
         res.json(hobbies.rows)
         

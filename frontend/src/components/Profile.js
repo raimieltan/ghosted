@@ -16,9 +16,8 @@ const Profile = ( {setAuth} ) => {
     const [age, setAge] = useState("")
     const [bio, setBio] = useState("")
     const [profilePic, setProfilePic] = useState("")
-    const [user_id , setUserId] = useState()
+    const [user_id , setUserId] = useState(0)
 
-    const type = "profile"
     
 
     async function getProfilePhoto(){
@@ -49,6 +48,8 @@ const Profile = ( {setAuth} ) => {
             setAge(parseRes.user_age)
             setBio(parseRes.user_bio)
             setUserId(parseRes.user_id)
+            
+         
 
           
         } catch (error) {
@@ -67,8 +68,9 @@ const Profile = ( {setAuth} ) => {
         getProfilePhoto()
     }, [])
 
+
     return (
-        <div>
+        <div className="container">
 
 <div class="sidenav">
 <Mail />
@@ -81,20 +83,24 @@ const Profile = ( {setAuth} ) => {
                 <div className="profile-info">
                 <img src={`http://localhost:8000/img/${profilePic}`} className="profile-pic" alt="profile" width="100px" height="100px"></img>
                     <div className="text-infos">
-                        <h3 className="name display-6">{first_name} {last_name}</h3>
+                        <h3 className="name display-6">{first_name} {last_name} {user_id}</h3>
                         <p>{bio}</p>
+                        <Hobbies id={user_id} />
                     </div>
 
 
                 </div>
-        
-            {/* <Hobbies />
-            <AddHobby /> */}
+            <AddHobby />
             <button className= "btn btn-primary" onClick= {e => logout(e)}>Logout</button>
             
             
-            <Upload type={type} />
+            <Upload type={'profile'} />
+
+
+
+            <Upload type={'posts'} />
             <Link to= "/dashboard">Dashboard</Link>
+            <Link className="mail-link" to= "/mail">Mail</Link>
        
 
         </div>

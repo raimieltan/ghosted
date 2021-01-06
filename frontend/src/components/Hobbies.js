@@ -1,11 +1,13 @@
 import React, {useState, useEffect } from "react"
+import "./css/hobbies.css"
 
-const DisplayHobbies = () => {
+
+const DisplayHobbies = ( { id }  ) => {
     const [hobbies, setHobbies] = useState([])
 
     const getHobbies = async () => {
         try {
-            const response = await fetch("http://localhost:8000/hobbies/show" , {
+            const response = await fetch(`http://localhost:8000/hobbies/show/${id}` , {
                 headers: {token: localStorage.token }
             })
 
@@ -20,12 +22,12 @@ const DisplayHobbies = () => {
 
     useEffect( () => {
         getHobbies();
-    }, [])
+    }, [id])
 
-    return <div>
+    return <div className="hobbies-container">
         {hobbies.map( hobby => {
-            return <div key={hobby.hobby_id}>
-                <p>{hobby.hobby_content}</p>
+            return <div className="hobby-item" key={hobby.hobby_id}>
+                <p className="badge badge-light">{hobby.hobby_content}</p>
             </div>
         })}
     </div>

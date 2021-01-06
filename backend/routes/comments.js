@@ -4,14 +4,18 @@ const authorization = require('../middleware/authorization')
 
 
 //get comments 
-router.get('/retreive/:id', async ( req, res ) => {
+router.get('/retrieve/:id', async ( req, res ) => {
     try {
 
         const { id } = req.params
 
         //query comments given picture id
     
-        const comments = await pool.query("SELECT * FROM comments where pic_id = $1", [id])
+        const comments = await pool.query(`SELECT c.comment_id, c.comment_content, c.pic_id, u.user_first_name 
+        FROM comments as c
+        INNER JOIN users as u
+        ON u.user_id = c.user_id
+        WHERE pic_id = $1`, [id])
     
         res.json(comments.rows)
         
@@ -22,12 +26,12 @@ router.get('/retreive/:id', async ( req, res ) => {
 
 })
 
-router.post('/add/:id' ,async ( req, res ) => {
+router.post('/add/:id' ,authorization, async ( req, res ) => {
     try {
         const { id } = req.params
         const { comment } = req.body
 
-        const newComment = await pool.query("INSERT INTO comments VALUES(default, $1, $2)" , [ comment, id])
+        const newComment = await pool.query("INSERT INTO comments VALUES(default, $1, $2, $3)" , [ comment, id, req.user])
         
         res.json("Comment added")
     } catch (error) {
@@ -39,3 +43,6 @@ router.post('/add/:id' ,async ( req, res ) => {
 })
 
 //post comments
+
+
+module.exports = router

@@ -1,5 +1,8 @@
 import React , {useState, useEffect } from 'react'
 import "./css/peoplecard.css"
+import Hobbies from './Hobbies'
+import AddRating from './AddRating'
+
 const PeopleCard = ( { name, age , bio, id, pic} ) => {
 
     const [rating , setRating] = useState("")
@@ -36,12 +39,11 @@ const PeopleCard = ( { name, age , bio, id, pic} ) => {
                 <h3 className="people-name">{name}</h3>
                 <p className="people-age">{age}</p>
                 <p className="people-rating">{rating}</p>
-              
-                
-                
-
             </div>
             <p className="people-bio">{bio}</p>
+            <Hobbies id={id}/>
+
+            <AddRating id={id} />
 
         </div>
     )

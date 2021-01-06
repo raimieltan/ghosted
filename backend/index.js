@@ -32,6 +32,8 @@ app.use("/groups", require("./routes/groups.js"))
 
 app.use("/ratings" , require('./routes/ratings.js'))
 
+app.use('/comments' , require("./routes/comments"))
+
 
 let db;
 

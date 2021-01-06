@@ -41,9 +41,10 @@ router.post("/rate/:id", authorization, async(req, res) => {
 
     //trycatch
     try {
-        const { id } = req.body
+        const { id } = req.params
         const { rating } = req.body
-        const newRating = await pool.query("INSERT INTO ratings values(default, $1, $2 ", [rating, id])
+        console.log(req.body)
+        const newRating = await pool.query("INSERT INTO ratings values(default, $1, $2 )", [ rating, id])
 
         res.json("User rated")
 

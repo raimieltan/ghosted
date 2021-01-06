@@ -4,7 +4,7 @@ import Register from './components/Register.js'
 import Profile from './components/Profile.js'
 import Mail from './components/Mail.js'
 import Homepage from './components/Homepage.js'
-
+import Feed from "./components/Feed";
 
 
 import {
@@ -58,6 +58,7 @@ function App() {
             <Route exact path="/dashboard" render={props => isAuthenticated ?  <Dashboard {...props} setAuth = {setAuth} /> : <Redirect to="/login" />} />
             <Route exact path="/profile" render={props => isAuthenticated ?  <Profile {...props} setAuth = {setAuth} /> : <Redirect to="/login" />} />
             <Route exact path="/mail" render={props => isAuthenticated ?  <Mail /> : <Redirect to="/login" />} />
+            <Route exact path="/feed"><Feed /></Route>
          </Switch>
         </div>
       </Router>
