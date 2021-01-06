@@ -3,7 +3,7 @@ const pool = require('../pool')
 const authorization = require('../middleware/authorization')
 
 
-router.get("/retrieve/:id" , authorization, async ( req,res ) => {
+router.get("/retrieve/members/:id" , authorization, async ( req,res ) => {
     try {
 
         //destructure params
@@ -16,9 +16,14 @@ router.get("/retrieve/:id" , authorization, async ( req,res ) => {
 
         if(authCheck.rows.length > 0){
                 //query group
-                const groupQuery = await pool.query(`SELECT g.group_id, g.group_name,u.user_id, u.user_first_name FROM group_sessions AS gs 
-                INNER JOIN groups AS g ON g.group_id = gs.group_id
-                INNER JOIN users AS u ON u.user_id = gs.user_id WHERE g.group_id = $1 and u.user_id != $2`, [id, req.user])
+                const groupQuery = await pool.query(`
+                SELECT g.group_id, g.group_name,u.user_id, u.user_first_name 
+                FROM group_sessions AS gs 
+                    INNER JOIN groups AS g 
+                        ON g.group_id = gs.group_id
+                    INNER JOIN users AS u 
+                        ON u.user_id = gs.user_id
+                WHERE g.group_id = $1 and u.user_id != $2`, [id, req.user])
 
 
                 res.json(groupQuery.rows)
