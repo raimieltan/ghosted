@@ -12,7 +12,7 @@ app.use(cors())
 app.use(bodyParser.urlencoded( {extended: true}))
 app.use('/img', express.static( path.join(__dirname, 'public/uploads')))
 
-app.use("/auth" , require("./routes/jwtAuth.js"));
+app.use("/auth" , require("./routes/authentication.js"));
 
 app.use("/dashboard", require("./routes/dashboard.js"))
 

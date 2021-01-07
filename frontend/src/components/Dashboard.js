@@ -15,11 +15,32 @@ const Dashboard = ( {setAuth} ) => {
 
     return (
         <div className = "container">
-      
-            <Link to="/profile">Profile</Link>
-            <button className= "btn btn-primary" onClick= {e => logout(e)}>Logout</button>
-
+                        <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page">
+                    <Link className="link-class" to= "/profile">PROFILE</Link>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">
+                    <Link className="link-class" to= "/groups">GROUPS</Link>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">
+                    <Link className="link-class" to= "/mail">MAILS</Link>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" tabindex="-1">
+                    <Link className="link-class" to= "/group-feed">GROUP CHAT</Link>
+                    </a>
+                </li>
+            </ul>
+            <hr/>
             <DisplayUsers/>
+           
+            
         </div>
     )
 }

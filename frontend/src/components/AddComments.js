@@ -18,7 +18,7 @@ const AddComment = ( { pic_id } ) => {
                 method: "POST",
                 headers: {
                     "Content-type" : "application/json",
-                    token: localStorage.token
+                    'Authorization':'Bearer ' + localStorage.token
                 },
                 body: JSON.stringify(body)
             })

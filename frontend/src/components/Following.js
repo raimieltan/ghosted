@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import SendBoo from "./SendBoo.js"
 import "./css/following.css"
-import PeopleCard from "./Peoplecard.js"
 import Carousel from "./Carousel"
 
 const Following = () => {
@@ -16,7 +14,7 @@ const Following = () => {
         try {
             
             const response = await fetch("http://localhost:8000/connections/show/following", {
-                headers: {token: localStorage.token}
+                headers: {'Authorization':'Bearer ' + localStorage.token}
             })
     
             const jsonData = await response.json();
@@ -32,7 +30,9 @@ const Following = () => {
         try {
             
             const response = await fetch("http://localhost:8000/connections/show/followers", {
-                headers: {token: localStorage.token}
+                headers: {
+                    'Authorization':'Bearer ' + localStorage.token
+                }
             })
     
             const jsonData = await response.json();
@@ -72,7 +72,7 @@ const Following = () => {
     }, [followers, following])
 
 
-    console.log(matches)
+
 
     return (
         <Carousel people={matches}/>

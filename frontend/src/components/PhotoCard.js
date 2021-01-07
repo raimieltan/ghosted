@@ -9,7 +9,7 @@ const PhotoCard = ( { id, pic, name} ) => {
         try {
 
             const response = await fetch(`http://localhost:8000/comments/retrieve/${id}`, {
-                headers: {token: localStorage.token}
+                headers: {'Authorization':'Bearer ' + localStorage.token}
             })
 
             const parsedComments = await response.json()

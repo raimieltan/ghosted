@@ -12,7 +12,7 @@ const GroupFeed = () => {
         try {
             const response = await fetch(`http://localhost:8000/groups/retrieve/joined` , {
                 headers: {
-                    token: localStorage.token
+                    'Authorization':'Bearer ' + localStorage.token
                 }
             })
 
@@ -60,7 +60,7 @@ const GroupFeed = () => {
                 method: "POST",
                 headers: {
                     "Content-type" : "application/json",
-                    token: localStorage.token
+                    'Authorization':'Bearer ' + localStorage.token
                 },
                 body: JSON.stringify(body)
             })

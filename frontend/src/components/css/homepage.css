@@ -1,13 +1,14 @@
 body {
     background-size: auto;
-    background-color: rgb(15, 14, 14);
+    background-color:rgb(44, 44, 44);
     background-repeat: no-repeat;
     color: white;
 }
 
-.modal {
-    background-color: black;
+hr {
+    background-color: white;
 }
+
 .trademark {
     margin: 0;
     position: absolute;
@@ -33,3 +34,4 @@ body {
     border-radius: 50px;
     width: 250px;
 }
+

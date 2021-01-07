@@ -23,7 +23,8 @@ const AddHobby = () => {
                 method: "POST",
                 headers: {
                     "Content-type" : "application/json",
-                    token: localStorage.token },
+                    'Authorization':'Bearer ' + localStorage.token
+                },
                 body: JSON.stringify(body)
             })
 
@@ -38,11 +39,9 @@ const AddHobby = () => {
 
 
     return (
-        <div className = "container">
+        <div>
             <form onSubmit = {onSubmitForm}>
                 <input type="hobby_content" name="hobby_content" placeholder="hobby" className="form-control my-3" value = {hobby_content} onChange = {e => onChange(e)} />
-              
-                <button className = "btn btn-success btn-block">Add Hobby</button>
                
             </form>
         </div>

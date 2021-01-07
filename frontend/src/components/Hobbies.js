@@ -8,7 +8,7 @@ const DisplayHobbies = ( { id }  ) => {
     const getHobbies = async () => {
         try {
             const response = await fetch(`http://localhost:8000/hobbies/show/${id}` , {
-                headers: {token: localStorage.token }
+                headers: {'Authorization':'Bearer ' + localStorage.token }
             })
 
             const jsonData = await response.json();

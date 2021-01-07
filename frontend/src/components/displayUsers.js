@@ -1,5 +1,7 @@
 import React, {Fragment, useState, useEffect } from 'react';
 import PeopleCard from "./Peoplecard"
+import Heart from './ui_photos/heart.png'
+import "./css/dashboard.css"
 
 const DisplayUsers = () => {
 
@@ -11,11 +13,15 @@ const DisplayUsers = () => {
         try {
             
             const response = await fetch("http://localhost:8000/users", {
-                headers:{ token: localStorage.token}
+                headers:{ 
+                    'Authorization':'Bearer ' + localStorage.token 
+                }
             })
 
             const existing = await fetch("http://localhost:8000/connections/show/following", {
-                headers: {token: localStorage.token}
+                headers: {
+                    'Authorization':'Bearer ' + localStorage.token 
+                }
             })
 
             const users_existing = await existing.json()
@@ -46,7 +52,7 @@ const DisplayUsers = () => {
                 method: "POST",
                 headers: {
                     "Content-type" : "application/json",
-                    token: localStorage.token }
+                    'Authorization':'Bearer ' + localStorage.token  }
             })
 
             setUsers(users.filter(user => user.user_id !== id))
@@ -60,15 +66,17 @@ const DisplayUsers = () => {
         getUsers();
     }, [])
 return <Fragment>
-<div className ="container text-center my-5">
+<div className ="flex-dashboard container text-center my-5">
 
     {users.map(user => {
 
-        return <div key = {user.user_id} className = "container">
+        return <div key = {user.user_id} className = "dashboard-card">
 
                          <PeopleCard 
                          name={user.user_first_name} age={user.user_age} bio={user.user_bio} id={user.user_id} pic={user.pic_src} />
-                        <button className = "btn btn-success btn-block" onClick={() => dateUser(user.user_id)}>Date</button>
+                        <button className = "heart btn btn-light btn-sm" onClick={() => dateUser(user.user_id)}>
+                            <img src={Heart} width="10px" height="10px" />
+                        </button>
               </div>
 
 })}

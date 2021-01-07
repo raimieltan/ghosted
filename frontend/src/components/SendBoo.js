@@ -21,7 +21,7 @@ const SendBoo = ( { user_id } ) => {
                 method: "POST",
                 headers: {
                     "Content-type" : "application/json",
-                    token: localStorage.token },
+                    'Authorization':'Bearer ' + localStorage.token },
                 body: JSON.stringify(body)
             })
 
@@ -38,10 +38,7 @@ const SendBoo = ( { user_id } ) => {
     return (
         <div className = "container">
             <form onSubmit = {onSubmitForm}>
-                <input type="text" name="message" placeholder="Send Boo" className="form-control my-3" value = {message} onChange = {e => onChange(e)} />
-              
-                <button className = "btn btn-success btn-block">Boo</button>
-               
+                <input type="text" name="message" placeholder="Send Boo" className="form-control my-3" value = {message} onChange = {e => onChange(e)} />               
             </form>
         </div>
     )

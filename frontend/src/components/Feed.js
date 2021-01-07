@@ -10,7 +10,9 @@ const Feed = () => {
         try {
         
             const response = await fetch("http://localhost:8000/photos/retrieve/posts" , {
-                headers: {token: localStorage.token}
+                headers: {
+                    'Authorization':'Bearer ' + localStorage.token
+                }
             })
 
             const parsePhotos = await response.json()

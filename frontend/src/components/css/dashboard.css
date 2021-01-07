@@ -1,0 +1,16 @@
+.dashboard-card{
+
+    margin-bottom: 15px;
+}
+
+.heart {
+    margin-top: 5px;
+    border-radius: 120px;
+}
+
+.flex-dashboard {
+    display: flex;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    flex-flow: row wrap;
+}

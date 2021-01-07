@@ -30,7 +30,7 @@ function App() {
     try {
       const res = await fetch("http://localhost:8000/auth/verify", {
         method: "POST",
-        headers: { token: localStorage.token }
+        headers: { 'Authorization':'Bearer ' + localStorage.token }
       });
 
       const parseRes = await res.json();
@@ -54,15 +54,15 @@ function App() {
       <Router>
         <div>
           <Switch>
-            <Route exact path="/" render={ e => !isAuthenticated ? <Homepage /> : <Redirect to="/profile" />}/>
-            <Route exact path="/login" render={props => !isAuthenticated ? <Login {...props} setAuth = {setAuth} /> : <Redirect to="/profile" />} />
-            <Route exact path="/register" render={props => !isAuthenticated ? <Register {...props} setAuth = {setAuth} /> : <Redirect to="/login" />} />
-            <Route exact path="/dashboard" render={props => isAuthenticated ?  <Dashboard {...props} setAuth = {setAuth} /> : <Redirect to="/login" />} />
-            <Route exact path="/profile" render={props => isAuthenticated ?  <Profile {...props} setAuth = {setAuth} /> : <Redirect to="/login" />} />
-            <Route exact path="/mail" render={ e => isAuthenticated ?  <Mail /> : <Redirect to="/login" />} />
+            <Route exact path="/" render={ () => !isAuthenticated ? <Homepage /> : <Redirect to="/profile" />}/>
+            <Route exact path="/login" render={ () => !isAuthenticated ? <Login  setAuth = {setAuth} /> : <Redirect to="/profile" />} />
+            <Route exact path="/register" render={ () => !isAuthenticated ? <Register setAuth = {setAuth} /> : <Redirect to="/login" />} />
+            <Route exact path="/dashboard" render={ () => isAuthenticated ?  <Dashboard  setAuth = {setAuth} /> : <Redirect to="/login" />} />
+            <Route exact path="/profile" render={ () => isAuthenticated ?  <Profile  setAuth = {setAuth} /> : <Redirect to="/login" />} />
+            <Route exact path="/mail" render={ () => isAuthenticated ?  <Mail /> : <Redirect to="/login" />} />
             <Route exact path="/feed"><Feed /></Route>
             <Route exact path="/group-feed"><GroupFeed /></Route>
-            <Route exact path="/groups" render={ e => isAuthenticated ?  <Groups /> : <Redirect to="/login" />}/>
+            <Route exact path="/groups" render={ () => isAuthenticated ?  <Groups /> : <Redirect to="/login" />}/>
          </Switch>
         </div>
       </Router>

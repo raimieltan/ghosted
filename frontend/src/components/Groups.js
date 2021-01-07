@@ -1,5 +1,7 @@
 import React, {useState, useEffect } from 'react'
 import { toast } from "react-toastify"
+import "./css/groups.css"
+import { Link } from "react-router-dom"
 
 const Groups = () => {
 
@@ -30,7 +32,7 @@ const Groups = () => {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",
-                    token: localStorage.token
+                    'Authorization':'Bearer ' + localStorage.token
                 }
             })
 
@@ -55,13 +57,46 @@ const Groups = () => {
     }, [])
 
     return (
-        <div>
+        <div className="container">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page">
+                    <Link className="link-class" to= "/profile">PROFILE</Link>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">
+                    <Link className="link-class" to= "/dashboard">DASHBOARD</Link>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">
+                    <Link className="link-class" to= "/mail">MAILS</Link>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" tabindex="-1">
+                    <Link className="link-class" to= "/group-feed">GROUP CHAT</Link>
+                    </a>
+                </li>
+                
+            </ul>
+            <hr/>
+            <div className="flex-group">
             {groups.map( (group) => {
                 return <div key={group.group_id}>
-                    <span><p>{group.group_name} <button onClick={() => joinGroups(group.group_id)}>Join</button></p></span>
+                        <div className="group-card">
+                            <h1 className="display-4">TEAM</h1>
+                            <h1 className="display-4">{group.group_name}</h1>
+                            <button className="btn btn-outline-danger btn-lg" onClick={() => joinGroups(group.group_id)}>Join</button>
+                        </div>
+                    
                     
                 </div>
             })}
+
+            </div>
+
         </div>
     )
 }

@@ -17,7 +17,7 @@ const UploadPhoto = ({ type }) => {
             const deletePrevious = await fetch('http://localhost:8000/photos/delete', {
                 method: "DELETE",
                 headers: {
-                    token: localStorage.token
+                    'Authorization':'Bearer ' + localStorage.token
                 }
             })
 
@@ -25,7 +25,7 @@ const UploadPhoto = ({ type }) => {
             const newImage = await fetch(`http://localhost:8000/uploads/${type}` ,{
                 method: "POST",
                 headers: {
-                    token: localStorage.token
+                    'Authorization':'Bearer ' + localStorage.token
                 },
                 body: formData,
     
@@ -43,7 +43,7 @@ const UploadPhoto = ({ type }) => {
     return(
         <div>
                 <input type="file" onChange={fileOnChange}></input>
-    <button onClick={sendImage}>Upload:{type}</button>
+                <button onClick={sendImage}>Upload:{type}</button>
         </div>
 
     )
