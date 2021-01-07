@@ -51,6 +51,13 @@ const Following = () => {
         getDataFollowing();
         getDataFollowers();
         
+        const interval=setInterval( () => {
+            getDataFollowing();
+            getDataFollowers();
+        }, 1000)  
+
+
+        return() =>clearInterval(interval)
     }, [])
 
     useEffect( () => {

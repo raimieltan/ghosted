@@ -76,6 +76,7 @@ const GroupFeed = () => {
 
     useEffect(() => {
         getJoinedGroups()
+        
  
     }, [])
 

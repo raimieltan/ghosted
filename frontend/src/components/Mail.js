@@ -22,6 +22,12 @@ const Mail = () => {
 
     useEffect( () => {
         getMail()
+        const interval=setInterval( () => {
+            getMail()
+        }, 1000)  
+
+
+        return() =>clearInterval(interval)
     }, [])
 
     return (
