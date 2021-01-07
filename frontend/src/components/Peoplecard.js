@@ -38,12 +38,9 @@ const PeopleCard = ( { name, age , bio, id, pic} ) => {
             <div className="people-info">
                 <h3 className="people-name">{name}</h3>
                 <p className="people-age">{age}</p>
-                <p className="people-rating">{rating}</p>
             </div>
             <p className="people-bio">{bio}</p>
             <Hobbies id={id}/>
-
-            <AddRating id={id} />
 
         </div>
     )

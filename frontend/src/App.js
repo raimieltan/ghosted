@@ -5,6 +5,8 @@ import Profile from './components/Profile.js'
 import Mail from './components/Mail.js'
 import Homepage from './components/Homepage.js'
 import Feed from "./components/Feed";
+import Groups from "./components/Groups"
+import GroupFeed from "./components/GroupFeed"
 
 
 import {
@@ -52,13 +54,15 @@ function App() {
       <Router>
         <div>
           <Switch>
-            <Route exact path="/" render={props => !isAuthenticated ? <Homepage /> : <Redirect to="/profile" />}/>
+            <Route exact path="/" render={ e => !isAuthenticated ? <Homepage /> : <Redirect to="/profile" />}/>
             <Route exact path="/login" render={props => !isAuthenticated ? <Login {...props} setAuth = {setAuth} /> : <Redirect to="/profile" />} />
             <Route exact path="/register" render={props => !isAuthenticated ? <Register {...props} setAuth = {setAuth} /> : <Redirect to="/login" />} />
             <Route exact path="/dashboard" render={props => isAuthenticated ?  <Dashboard {...props} setAuth = {setAuth} /> : <Redirect to="/login" />} />
             <Route exact path="/profile" render={props => isAuthenticated ?  <Profile {...props} setAuth = {setAuth} /> : <Redirect to="/login" />} />
-            <Route exact path="/mail" render={props => isAuthenticated ?  <Mail /> : <Redirect to="/login" />} />
+            <Route exact path="/mail" render={ e => isAuthenticated ?  <Mail /> : <Redirect to="/login" />} />
             <Route exact path="/feed"><Feed /></Route>
+            <Route exact path="/group-feed"><GroupFeed /></Route>
+            <Route exact path="/groups" render={ e => isAuthenticated ?  <Groups /> : <Redirect to="/login" />}/>
          </Switch>
         </div>
       </Router>

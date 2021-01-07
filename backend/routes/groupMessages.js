@@ -13,13 +13,13 @@ router.get("/retrieve/:id", async(req, res) => {
         //query
 
         const messages = await pool.query(`
-        SELECT u.user_first_name, m.message_content, m.message_id, g.group_name, p.pic_src
+        SELECT u.user_first_name, m.message_content, m.message_id, g.group_id, g.group_name, p.pic_src
             FROM messages as m
-                INNER users as u
+                INNER JOIN users as u
                     on u.user_id = m.user_id
-                INNER groups as g
+                INNER JOIN groups as g
                     on g.group_id = m.group_id
-                INNER pictures as p
+                INNER JOIN pictures as p
                     on p.user_id = u.user_id
         WHERE p.pic_type='profile' AND g.group_id = $1` , [id])
 
@@ -36,7 +36,7 @@ router.get("/retrieve/:id", async(req, res) => {
 
 //post messages
 
-router.get("/add/:id" , authorization, async ( req, res ) => {
+router.post("/send/:id" , authorization, async ( req, res ) => {
     try {
 
         //destructure
@@ -44,7 +44,7 @@ router.get("/add/:id" , authorization, async ( req, res ) => {
         const { message } = req.body
 
         //query
-        const newMessage = await pool.query('INSERT INTO messages VALUES(default, $1, $2, $3)' , [message, req.user, message])
+        const newMessage = await pool.query('INSERT INTO messages VALUES(default, $1, $2, $3)' , [message, req.user, id])
 
         res.json('Message Sent')
     } catch (error) {
@@ -53,3 +53,4 @@ router.get("/add/:id" , authorization, async ( req, res ) => {
     }
 })
 
+module.exports = router;

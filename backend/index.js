@@ -34,6 +34,8 @@ app.use("/ratings" , require('./routes/ratings.js'))
 
 app.use('/comments' , require("./routes/comments"))
 
+app.use("/group-messages", require("./routes/groupMessages.js"))
+
 
 let db;
 

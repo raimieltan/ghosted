@@ -15,7 +15,7 @@ const Carousel = ( {people} ) => {
                 <p>Name here Name here Name here</p>
             </div>
             {people.map ( follows => {
-            return <div className="carousel-item">
+            return <div key={follows.user_id} className="carousel-item">
                 <PeopleCard name={follows.user_first_name} age={follows.user_age} id={follows.user_id} bio={follows.user_bio} pic={follows.pic_src}  />
                 <SendBoo user_id={follows.user_id} />
             </div>

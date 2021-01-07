@@ -4,8 +4,8 @@ import Hobbies from "./Hobbies.js";
 import AddHobby from "./AddHobbies.js"
 import Following from './Following.js'
 import Upload from './UploadPhoto'
-import PeopleCard from './Peoplecard'
 import Mail from './Mail.js'
+import Group from './Groups.js'
 
 import "./css/profile.css"
 
@@ -99,8 +99,9 @@ const Profile = ( {setAuth} ) => {
 
 
             <Upload type={'posts'} />
-            <Link to= "/dashboard">Dashboard</Link>
-            <Link className="mail-link" to= "/mail">Mail</Link>
+            <Link to= "/dashboard">Dashboard </Link>
+            <Link className="mail-link" to= "/mail">Mail </Link>
+            <Link to= "/groups">Join Groups</Link>
        
 
         </div>
