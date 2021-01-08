@@ -10,50 +10,39 @@ const Following = () => {
 
 
 
-    const getDataFollowing = async () => {
+    const getData = async () => {
         try {
             
-            const response = await fetch("http://localhost:8000/connections/show/following", {
+            const responseFollowing = await fetch("http://localhost:8000/connections/show/following", {
                 headers: {'Authorization':'Bearer ' + localStorage.token}
             })
+            
+            const responseFollowers = await fetch("http://localhost:8000/connections/show/followers", {
+                headers: {
+                    'Authorization':'Bearer ' + localStorage.token
+                }
+            })
+            const jsonDataFollowing = await responseFollowing.json();
+            const jsonDataFollowers = await responseFollowers.json();
     
-            const jsonData = await response.json();
-    
-            setFollowing(jsonData)
+            setFollowing(jsonDataFollowing)
+            setFollowers(jsonDataFollowers)
     
         } catch (error) {
             console.error(error.message)
         }
     }
 
-    const getDataFollowers = async () => {
-        try {
-            
-            const response = await fetch("http://localhost:8000/connections/show/followers", {
-                headers: {
-                    'Authorization':'Bearer ' + localStorage.token
-                }
-            })
-    
-            const jsonData = await response.json();
-    
-            setFollowers(jsonData)
-    
-        } catch (error) {
-            console.error(error.message)
-        }
-    }
+
 
 
 
     useEffect( () => {
         
-        getDataFollowing();
-        getDataFollowers();
+        getData();
         
         const interval=setInterval( () => {
-            getDataFollowing();
-            getDataFollowers();
+            getData();
         }, 1000)  
 
 

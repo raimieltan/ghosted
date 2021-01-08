@@ -14,12 +14,15 @@ const UploadPhoto = ({ type }) => {
             let formData = new FormData();
 
             formData.append("my-image", image)
-            const deletePrevious = await fetch('http://localhost:8000/photos/delete', {
-                method: "DELETE",
-                headers: {
-                    'Authorization':'Bearer ' + localStorage.token
-                }
-            })
+            if( type === 'profile'){
+                const deletePrevious = await fetch('http://localhost:8000/photos/delete', {
+                    method: "DELETE",
+                    headers: {
+                        'Authorization':'Bearer ' + localStorage.token
+                    }
+                })
+            }
+
 
     
             const newImage = await fetch(`http://localhost:8000/uploads/${type}` ,{
@@ -41,10 +44,12 @@ const UploadPhoto = ({ type }) => {
     }
 
     return(
-        <div>
-                <input type="file" onChange={fileOnChange}></input>
-                <button onClick={sendImage}>Upload:{type}</button>
+           
+        <div className="container">
+                <input type="file" onChange={fileOnChange}/>
+                <button className="button-upload btn btn-light" onClick={sendImage}>Upload</button>
         </div>
+    
 
     )
 }

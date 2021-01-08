@@ -62,6 +62,7 @@ const DisplayUsers = () => {
         }
     }
 
+
     useEffect( () => {
         getUsers();
     }, [])
@@ -74,9 +75,10 @@ return <Fragment>
 
                          <PeopleCard 
                          name={user.user_first_name} age={user.user_age} bio={user.user_bio} id={user.user_id} pic={user.pic_src} />
-                        <button className = "heart btn btn-light btn-sm" onClick={() => dateUser(user.user_id)}>
-                            <img src={Heart} width="10px" height="10px" />
+                        <button className = "heart btn btn-light" onClick={() => dateUser(user.user_id)}>
+                            <img src={Heart} width="20px" height="25px" />
                         </button>
+
               </div>
 
 })}

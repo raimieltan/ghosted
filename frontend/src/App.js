@@ -56,12 +56,12 @@ function App() {
           <Switch>
             <Route exact path="/" render={ () => !isAuthenticated ? <Homepage /> : <Redirect to="/profile" />}/>
             <Route exact path="/login" render={ () => !isAuthenticated ? <Login  setAuth = {setAuth} /> : <Redirect to="/profile" />} />
-            <Route exact path="/register" render={ () => !isAuthenticated ? <Register setAuth = {setAuth} /> : <Redirect to="/login" />} />
+            <Route exact path="/register" render={ () => !isAuthenticated ? <Register setAuth = {setAuth} /> : <Redirect to="/profile" />} />
             <Route exact path="/dashboard" render={ () => isAuthenticated ?  <Dashboard  setAuth = {setAuth} /> : <Redirect to="/login" />} />
             <Route exact path="/profile" render={ () => isAuthenticated ?  <Profile  setAuth = {setAuth} /> : <Redirect to="/login" />} />
             <Route exact path="/mail" render={ () => isAuthenticated ?  <Mail /> : <Redirect to="/login" />} />
-            <Route exact path="/feed"><Feed /></Route>
-            <Route exact path="/group-feed"><GroupFeed /></Route>
+            <Route exact path="/feed" render={ () => isAuthenticated ?  <Feed /> : <Redirect to="/login" />}></Route>
+            <Route exact path="/group-feed" render={ () => isAuthenticated ?  <GroupFeed /> : <Redirect to="/login" />}></Route>
             <Route exact path="/groups" render={ () => isAuthenticated ?  <Groups /> : <Redirect to="/login" />}/>
          </Switch>
         </div>

@@ -1,0 +1,35 @@
+.photo-card {
+    border: 1px solid rgb(124, 124, 124);
+    width: 100%;
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.comment-body {
+    background-color: rgb(56, 55, 55);
+    overflow-y: scroll;
+    height: 150px;
+    padding-left: 10px;
+    
+}
+
+.comment-form {
+    background-color: rgb(56, 55, 55);
+}
+
+.photo-pic {
+    width: 100%;
+}
+
+.pic-owner {
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.comment-content {
+    margin-bottom: -10px;
+    font-size: 18px;
+}

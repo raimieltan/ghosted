@@ -13,15 +13,13 @@ router.get("/retrieve/:id", async(req, res) => {
         //query
 
         const messages = await pool.query(`
-        SELECT u.user_first_name, m.message_content, m.message_id, g.group_id, g.group_name, p.pic_src
+        SELECT u.user_first_name, m.message_content, m.message_id, g.group_id, g.group_name
             FROM messages as m
                 INNER JOIN users as u
                     on u.user_id = m.user_id
                 INNER JOIN groups as g
                     on g.group_id = m.group_id
-                INNER JOIN pictures as p
-                    on p.user_id = u.user_id
-        WHERE p.pic_type='profile' AND g.group_id = $1` , [id])
+        WHERE g.group_id = $1` , [id])
 
         res.json(messages.rows)
         

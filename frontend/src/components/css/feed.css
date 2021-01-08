@@ -1,0 +1,12 @@
+.feed-container {
+    width: 70%;
+}
+
+.main-feed {
+    display: flex;
+}
+
+.feed-profile {
+    text-align: center;
+}
+

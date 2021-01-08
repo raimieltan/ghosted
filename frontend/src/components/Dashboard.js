@@ -36,6 +36,11 @@ const Dashboard = ( {setAuth} ) => {
                     <Link className="link-class" to= "/group-feed">GROUP CHAT</Link>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" tabindex="-1">
+                    <Link className="link-class" to= "/feed">PHOTOS</Link>
+                    </a>
+                </li>
             </ul>
             <hr/>
             <DisplayUsers/>

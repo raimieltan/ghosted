@@ -34,11 +34,10 @@ const AddComment = ( { pic_id } ) => {
 
 
     return (
-        <div className = "container">
+        <div className = "comment-box">
             <form onSubmit = {onSubmitForm}>
-                <input type="text" name="comment" placeholder="comment" className="form-control my-3" value = {comment} onChange = {e => onChange(e)} />
-              
-                <button className = "btn btn-success btn-block">comment</button>
+
+                <input type="text" name="comment" placeholder="comment" className="comment-form form-control" value = {comment} onChange = {e => onChange(e)} />
                
             </form>
         </div>

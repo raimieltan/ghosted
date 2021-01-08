@@ -1,5 +1,6 @@
 import React , {useState, useEffect } from 'react'
-import AddComment from "./AddComments"
+import AddComment from "./AddComments.js"
+import "./css/photocard.css"
 
 
 const PhotoCard = ( { id, pic, name} ) => {
@@ -26,18 +27,35 @@ const PhotoCard = ( { id, pic, name} ) => {
     useEffect(() => {
         getComments()
 
+        const interval = setInterval(() => {
+            getComments()
+        }, 1000)
+
     }, [])
     
     return (
-        <div>
-            <p> {name} </p>
-            <img className="photo-pic" src={`http://localhost:8000/img/${pic}`} width="200px" height="400px"></img>
-            <AddComment pic_id = {id}/>
+        // <div>
+        //     <p> {name} </p>
+        //     <img className="photo-pic" src={`http://localhost:8000/img/${pic}`} width="200px" height="400px"></img>
+        //     <AddComment pic_id = {id}/>
+
+        // </div>
+
+
+        <div className="photo-card">
+        <h4 className="pic-owner">{name}</h4>
+        <img src={`http://localhost:8000/img/${pic}`} className="photo-pic" alt="feed-pic"/>
+        <div class="comment-body">
+     
             {comments.map( (comment) => {{
-                return <div key={comment.comment_id}>
-                    <p>{comment.user_first_name}: {comment.comment_content}</p>
+                return <div className="comment-content"  key={comment.comment_id}>
+                    <p><b>{comment.user_first_name}</b> {comment.comment_content}</p>
                 </div>
             }})}
+            
+            
+        </div>
+        <AddComment pic_id = {id}/> 
         </div>
     )
 }

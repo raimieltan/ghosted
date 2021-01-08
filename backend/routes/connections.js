@@ -25,7 +25,7 @@ router.get("/show/followers" , authorization, async (req, res) => {
     try {
 
         const following = await pool.query(`
-        SELECT u.user_id, p.pic_src, u.user_bio, u.user_first_name, u.user_last_name, user_age 
+        SELECT u.user_id 
             FROM connections as c 
                 INNER JOIN users as u 
                     on c.user1_id = u.user_id 
@@ -66,4 +66,19 @@ router.post("/add/:id",authorization, async(req, res) => {
         res.status(500).send(error).message
     }
 })
+
+router.delete("/ghost/:id", authorization, async ( req, res ) => {
+    try {
+
+        const { id } = req.params
+        
+        const ghostUser = await pool.query("DELETE FROM connections where user1_id = $1 and user2_id = $2 RETURNING *", [ req.user, id ])
+
+        res.json(ghostUser.rows[0])
+    } catch (error) {
+        console.error(error.message)
+        res.status(500).send(error.message)
+    }
+})
+
 module.exports = router

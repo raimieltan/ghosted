@@ -1,9 +1,8 @@
 .following-container {
-    color: white;
-    width: 60%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    color: white;   
+    display: flex;
+    justify-content: space-evenly ;
+    flex-flow: row wrap;
 }
 
 .people-card {
@@ -22,6 +21,32 @@
       
 }
 
+
+.button-container{
+    display: block;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.ghost {
+    margin-left: 20px;
+    border-radius: 120px;
+}
+
+.chat {
+    border-radius: 120px;
+
+}
+
+.boo {
+    background-color: gainsboro;
+    border-radius: 20px;
+}
+
+
+
 @media only screen and (max-width: 450px) {
     .carousel-item {
         width: 100%;
@@ -35,10 +60,3 @@
         margin-right: auto;
     }
   }
-
-.chat{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}

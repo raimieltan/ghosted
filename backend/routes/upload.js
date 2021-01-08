@@ -25,7 +25,7 @@ router.post('/:type', upload.single('my-image'),authorization, async (req, res) 
         const newPicture = await pool.query("INSERT INTO pictures VALUES (default, $1, $2, $3)" , [
             filename, type, req.user
         ])
-        console.log(req.file)
+
         res.send('Image uploaded')
     } catch (error) {
         console.error(error.message)
@@ -33,4 +33,4 @@ router.post('/:type', upload.single('my-image'),authorization, async (req, res) 
     }
 } )
 
-module.exports = router
+module.exports = router 

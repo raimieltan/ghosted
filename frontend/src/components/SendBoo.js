@@ -1,5 +1,5 @@
 import React, {useState, useEffect } from "react"
-
+import "./css/boo.css"
 const SendBoo = ( { user_id } ) => {
 
     const [message, setMessage ] = useState('')
