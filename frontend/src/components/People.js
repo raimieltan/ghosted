@@ -6,7 +6,7 @@ import Chat from "./ui_photos/chat.png"
 import ghost from './ui_photos/ghost.png'
 import { toast } from 'react-toastify'
 
-const Carousel = ( {people} ) => {
+const People = ( {people} ) => {
 
     const ghostUser = async( id , name) => {
 
@@ -88,4 +88,4 @@ const Carousel = ( {people} ) => {
     )
 }
 
-export default Carousel;
+export default People;

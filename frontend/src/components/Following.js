@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import "./css/following.css"
-import Carousel from "./Carousel"
+import People from "./People"
 
 const Following = () => {
 
@@ -71,7 +71,7 @@ const Following = () => {
 
 
     return (
-        <Carousel people={matches}/>
+        <People people={matches}/>
     )
         
 

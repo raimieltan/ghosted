@@ -24,7 +24,7 @@ router.post("/add" ,authorization, async (req, res ) => {
 
         const { hobby_content } = req.body
 
-        const newHoby = await pool.query("INSERT INTO hobbies VALUES(default, $1, $2) RETURNING *" , [
+        const newHoby = await pool.query("INSERT INTO hobbies VALUES(default, $1, $2)" , [
             hobby_content, req.user
         ])
         

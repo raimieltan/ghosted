@@ -14,7 +14,9 @@ router.get("/retrieve/:type" , authorization, async (req, res) => {
             FROM pictures as p
             INNER JOIN users as u
             on p.user_id = u.user_id
-            where pic_type = $1` ,[type])
+            where pic_type = $1
+            ORDER BY
+            p.pic_id DESC` ,[type])
             res.json(photos.rows)
         }
         else{

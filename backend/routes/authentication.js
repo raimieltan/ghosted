@@ -28,7 +28,6 @@ router.post('/register', async (req, res) => {
             first_name, last_name, age, gender, bio, email, bcryptPassword
         ])
 
-        console.log(newUser)
 
 
         const token = jwtGenerator(newUser.rows[0].user_id)

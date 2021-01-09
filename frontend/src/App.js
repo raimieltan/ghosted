@@ -49,6 +49,7 @@ function App() {
   const setAuth = (boolean) => {
     setIsAuthenticated(boolean)
   }
+  
   return (
     <Fragment>
       <Router>
