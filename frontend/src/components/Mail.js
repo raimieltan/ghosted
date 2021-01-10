@@ -32,19 +32,19 @@ const Mail = () => {
 
     return (
         <div className="container">
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page">
+            <ul className="nav">
+                <li className="nav-item">
+                    <a className="nav-link active" aria-current="page">
                     <Link className="link-class" to= "/profile">PROFILE</Link>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link">
+                <li className="nav-item">
+                    <a className="nav-link">
                     <Link className="link-class" to= "/dashboard">DASHBOARD</Link>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" tabindex="-1">
+                <li className="nav-item">
+                    <a className="nav-link" tabindex="-1">
                     <Link className="link-class" to= "/group-feed">GROUP CHAT</Link>
                     </a>
                 </li>

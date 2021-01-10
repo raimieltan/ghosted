@@ -22,6 +22,12 @@ const DisplayHobbies = ( { id }  ) => {
 
     useEffect( () => {
         getHobbies();
+
+        const interval = setInterval( () => {
+            getHobbies();
+        }, 1000)
+
+        return () => clearInterval(interval)
     }, [id])
 
     return <div className="hobbies-container">

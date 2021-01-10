@@ -31,23 +31,18 @@ const PhotoCard = ( { id, pic, name} ) => {
             getComments()
         }, 1000)
 
-    }, [])
+        return () => clearInterval(interval)
+    })
     
     return (
-        // <div>
-        //     <p> {name} </p>
-        //     <img className="photo-pic" src={`http://localhost:8000/img/${pic}`} width="200px" height="400px"></img>
-        //     <AddComment pic_id = {id}/>
-
-        // </div>
 
 
         <div className="photo-card">
         <h4 className="pic-owner">{name}</h4>
         <img src={`http://localhost:8000/img/${pic}`} className="photo-pic" alt="feed-pic"/>
-        <div class="comment-body">
-     
+        <div className="comment-body">
             {comments.map( (comment) => {{
+                
                 return <div className="comment-content"  key={comment.comment_id}>
                     <p><b>{comment.user_first_name}</b> {comment.comment_content}</p>
                 </div>

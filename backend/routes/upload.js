@@ -22,6 +22,9 @@ router.post('/:type', upload.single('my-image'),authorization, async (req, res) 
     try {
         const { type } = req.params
         const { filename } = req.file
+        const { text } = req.body
+
+        console.log(text)
         const newPicture = await pool.query("INSERT INTO pictures VALUES (default, $1, $2, $3)" , [
             filename, type, req.user
         ])

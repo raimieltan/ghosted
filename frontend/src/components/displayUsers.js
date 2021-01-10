@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import PeopleCard from "./Peoplecard"
 import Heart from './ui_photos/heart.png'
 import "./css/dashboard.css"
@@ -66,24 +66,25 @@ const DisplayUsers = () => {
     useEffect( () => {
         getUsers();
     }, [])
-return <Fragment>
-<div className ="flex-dashboard container text-center my-5">
+return (
+    <div className ="flex-dashboard container text-center my-5">
 
-    {users.map(user => {
+        {users.map(user => {
 
-        return <div key = {user.user_id} className = "dashboard-card">
+            return <div key = {user.user_id} className = "dashboard-card">
 
-                         <PeopleCard 
-                         name={user.user_first_name} age={user.user_age} bio={user.user_bio} id={user.user_id} pic={user.pic_src} />
-                        <button className = "heart btn btn-light" onClick={() => dateUser(user.user_id)}>
-                            <img src={Heart} width="20px" height="25px" />
-                        </button>
+                            <PeopleCard 
+                            name={user.user_first_name} age={user.user_age} bio={user.user_bio} id={user.user_id} pic={user.pic_src} />
+                            <button className = "heart btn btn-light" onClick={() => dateUser(user.user_id)}>
+                                <img src={Heart} width="20px" height="25px" />
+                            </button>
 
-              </div>
+                </div>
 
-})}
-</div>
-</Fragment>;
+    })}
+    </div>
+)
+
 };
 
 export default DisplayUsers;

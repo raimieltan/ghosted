@@ -68,7 +68,7 @@ const ProfileCard = () => {
         <div className="profile-info">
         <img src={`http://localhost:8000/img/${profilePic}`} className="profile-pic" alt="profile" width="100px" height="100px"></img>
             <div className="text-infos">
-                <h3 className="name display-6">{first_name} {last_name} {age}</h3>
+                <h3 className="name display-6">{first_name} {last_name}, {age}</h3>
                 <p>{bio}</p>
                 <Hobbies id={user_id} />
             </div>

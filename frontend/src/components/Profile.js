@@ -1,8 +1,7 @@
 import React, {useState , useEffect } from "react"
 import { Link } from 'react-router-dom'
-import Hobbies from "./Hobbies.js";
 import AddHobby from "./AddHobbies.js"
-import Following from './Following.js'
+import Matches from './Matches.js'
 import Upload from './UploadPhoto'
 import ProfileCard from "./ProfileCard"
 
@@ -22,45 +21,45 @@ const Profile = ( {setAuth} ) => {
 
      
       
-      <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" >Ghosted</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <nav className="navbar navbar-expand-lg navbar-light bg-dark">
+  <div className="container-fluid">
+    <a className="navbar-brand" >Ghosted</a>
+    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span className="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page">
+    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+        <li className="nav-item">
+          <a className="nav-link active" aria-current="page">
             <Link className="link-class" to= "/dashboard">Dashboard</Link>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" >
+        <li className="nav-item">
+          <a className="nav-link" >
             <Link className="link-class" to= "/mail">Mail</Link>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link">
+        <li className="nav-item">
+          <a className="nav-link">
             <Link className="link-class" to= "/groups">Groups</Link>
           </a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <li className="nav-item dropdown">
+          <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
            
           </a>
-          <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+          <ul className="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
             <li>
-                <a class="dropdown-item">
+                <a className="dropdown-item">
                     <AddHobby />
                 </a></li>
             <li>
-                <a class="dropdown-item">
+                <a className="dropdown-item">
                     <Upload type={'profile'} />
                 </a></li>
-            <li><hr class="dropdown-divider"/></li>
+            <li><hr className="dropdown-divider"/></li>
             <li>
-                <a class="dropdown-item">
+                <a className="dropdown-item">
                     <button className= "btn btn-light" onClick= {e => logout(e)}>Logout</button>
                 </a></li>
           </ul>
@@ -77,7 +76,7 @@ const Profile = ( {setAuth} ) => {
 
         <ProfileCard />
         
-        <Following />
+        <Matches />
        
 
         </div>

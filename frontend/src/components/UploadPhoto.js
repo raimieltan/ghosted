@@ -14,6 +14,11 @@ const UploadPhoto = ({ type }) => {
             let formData = new FormData();
 
             formData.append("my-image", image)
+            formData.append("text" , "text")
+
+
+            console.log(formData.entries())
+
             if( type === 'profile'){
                 const deletePrevious = await fetch('http://localhost:8000/photos/delete', {
                     method: "DELETE",
@@ -45,7 +50,7 @@ const UploadPhoto = ({ type }) => {
 
     return(
            
-        <div className="container">
+        <div>
                 <input type="file" onChange={fileOnChange}/>
                 <button className="button-upload btn btn-light" onClick={sendImage}>Upload</button>
         </div>

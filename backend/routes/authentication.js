@@ -28,6 +28,9 @@ router.post('/register', async (req, res) => {
             first_name, last_name, age, gender, bio, email, bcryptPassword
         ])
 
+        const newPicture = await pool.query("INSERT INTO pictures VALUES (default, $1, $2, $3)" , [
+            'ghost.png', 'profile', newUser.rows[0].user_id
+        ])
 
 
         const token = jwtGenerator(newUser.rows[0].user_id)
