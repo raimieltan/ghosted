@@ -54,6 +54,7 @@ const GroupFeed = () => {
     }
 
     const onSubmitForm = async (e) => {
+        setMessage('')
         e.preventDefault()
         
         const group_id = messages[0].group_id

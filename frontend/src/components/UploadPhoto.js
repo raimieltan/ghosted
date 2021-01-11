@@ -8,6 +8,7 @@ const UploadPhoto = ({ type }) => {
     };
 
     const sendImage = async (event) => {
+        setImage({})
   
         try {
 

@@ -2,8 +2,10 @@ const router = require('express').Router()
 const pool = require('../pool.js')
 const authorization = require("../middleware/authorization.js")
 
-router.get("/show/following" , authorization, async (req, res) => {
+router.get("/show/following/:id" , authorization, async (req, res) => {
     try {
+
+        const { id } = req.params
 
         const following = await pool.query(`
         SELECT u.user_id,p.pic_src,u.user_bio, u.user_first_name, u.user_last_name, user_age 
@@ -11,7 +13,7 @@ router.get("/show/following" , authorization, async (req, res) => {
             INNER JOIN users as u 
                 on c.user2_id = u.user_id 
             INNER JOIN pictures as p on c.user2_id = p.user_id   
-        WHERE c.user1_id = $1 and p.pic_type = 'profile'` , [req.user])
+        WHERE c.user1_id = $1 and p.pic_type = 'profile'` , [id])
 
         res.json(following.rows)
         
@@ -21,16 +23,17 @@ router.get("/show/following" , authorization, async (req, res) => {
     }
 })
 
-router.get("/show/followers" , authorization, async (req, res) => {
+router.get("/show/followers/:id" , authorization, async (req, res) => {
     try {
 
+        const { id } = req.params
         const following = await pool.query(`
         SELECT u.user_id 
             FROM connections as c 
                 INNER JOIN users as u 
                     on c.user1_id = u.user_id 
                 INNER JOIN pictures as p on c.user2_id = p.user_id
-            WHERE c.user2_id = $1 and p.pic_type = 'profile'` , [req.user])
+            WHERE c.user2_id = $1 and p.pic_type = 'profile'` , [id])
 
         res.json(following.rows)
         

@@ -2,20 +2,18 @@ import React, {useState} from "react"
 
 const AddHobby = () => {
     
-    const [inputs, setInputs] = useState( {
-        hobby_content: ""
-    })
+    const [hobby, setHobby] = useState('')
 
-    const {hobby_content} = inputs
 
     const onChange = (e) => {
-        setInputs( {...inputs, [e.target.name] : e.target.value})
+        setHobby( e.target.value )
     }
     
 
     const onSubmitForm = async(e) => {
+        setHobby('')
         e.preventDefault()
-        const body = { hobby_content }
+        const body = { hobby }
 
         try {
 
@@ -40,8 +38,8 @@ const AddHobby = () => {
 
     return (
         <div>
-            <form onSubmit = {onSubmitForm}>
-                <input type="hobby_content" name="hobby_content" placeholder="hobby" className="form-control my-3" value = {hobby_content} onChange = {e => onChange(e)} />
+            <form id="hobby-form" onSubmit = {onSubmitForm}>
+                <input type="text" name="hobby" placeholder="hobby" className="form-control my-3" value = {hobby} onChange = {e => onChange(e)} />
                
             </form>
         </div>

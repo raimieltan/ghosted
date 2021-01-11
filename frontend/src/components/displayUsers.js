@@ -7,18 +7,19 @@ const DisplayUsers = () => {
 
 
     const [users, setUsers ] = useState([])
+    const [filterAge, setFilterAge] = useState('21')
 
 
-    const getUsers = async () => {
+    const getUsers = async (age, id) => {
         try {
             
-            const response = await fetch("http://localhost:8000/users", {
+            const response = await fetch(`http://localhost:8000/users/${age}`, {
                 headers:{ 
                     'Authorization':'Bearer ' + localStorage.token 
                 }
             })
 
-            const existing = await fetch("http://localhost:8000/connections/show/following", {
+            const existing = await fetch(`http://localhost:8000/connections/show/following/${id}`, {
                 headers: {
                     'Authorization':'Bearer ' + localStorage.token 
                 }
@@ -62,12 +63,28 @@ const DisplayUsers = () => {
         }
     }
 
+    const onSubmitForm = (e) =>{
+        e.preventDefault()
+        getUsers(filterAge, localStorage.user_id);
+
+    }
+
+    const onChange = (e) => {
+        setFilterAge( e.target.value )
+        
+    }
+
 
     useEffect( () => {
-        getUsers();
+        getUsers(filterAge, localStorage.user_id);
     }, [])
 return (
-    <div className ="flex-dashboard container text-center my-5">
+    <div className ="flex-dashboard container text-center">
+        <form onSubmit={onSubmitForm}>
+            <label>Age</label>
+            <input className="form-filter" type="text" name="filterAge" placeholder="age" value={filterAge} onChange={ (e) => onChange(e)} />
+            <button className="btn btn-light btn-sm filter-button">Filter</button>
+        </form>
 
         {users.map(user => {
 

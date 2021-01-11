@@ -10,6 +10,7 @@ const AddComment = ( { pic_id } ) => {
 
     const onSubmitForm = async (e) => {
         e.preventDefault()
+        setComment('')
         const body = { comment }
 
         try {

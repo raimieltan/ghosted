@@ -37,6 +37,7 @@ const ProfileCard = () => {
             })
 
             const parseRes = await response.json()
+            localStorage.setItem('user_id', parseRes.user_id)
 
             setFirstName(parseRes.user_first_name)
             setLastName(parseRes.user_last_name)

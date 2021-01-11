@@ -12,6 +12,7 @@ const SendBoo = ( { user_id } ) => {
 
     const onSubmitForm = async(e) => {
         e.preventDefault()
+        setMessage('')
         const body = { message }
 
         

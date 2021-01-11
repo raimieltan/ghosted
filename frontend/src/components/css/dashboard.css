@@ -1,5 +1,6 @@
 .dashboard-card{
 
+    margin-top: 10px;
     margin-bottom: 15px;
 }
 
@@ -10,7 +11,19 @@
 
 .flex-dashboard {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-grow: 1;
     flex-flow: row wrap;
+    flex-direction: column;
+}
+
+.filter-button {
+    margin-left: 5px;
+}
+
+.form-filter {
+    text-align: center;
+    width: 100px;
+    margin-left: 10px;
+    border-radius: 5px;
 }

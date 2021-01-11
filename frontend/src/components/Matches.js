@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import "./css/following.css"
 import People from "./People"
+import { toast } from 'react-toastify'
 
 const Following = () => {
 
@@ -13,11 +14,11 @@ const Following = () => {
     const getData = async () => {
         try {
             
-            const responseFollowing = await fetch("http://localhost:8000/connections/show/following", {
+            const responseFollowing = await fetch(`http://localhost:8000/connections/show/following/${localStorage.user_id}`, {
                 headers: {'Authorization':'Bearer ' + localStorage.token}
             })
             
-            const responseFollowers = await fetch("http://localhost:8000/connections/show/followers", {
+            const responseFollowers = await fetch(`http://localhost:8000/connections/show/followers/${localStorage.user_id}`, {
                 headers: {
                     'Authorization':'Bearer ' + localStorage.token
                 }
@@ -66,7 +67,6 @@ const Following = () => {
         
        
     }, [followers, following])
-
 
 
 

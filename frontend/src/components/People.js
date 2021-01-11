@@ -21,7 +21,6 @@ const People = ( {people} ) => {
                 }
             })
 
-            const parseGhosted = await ghosted.json()
             toast.error('Ghosted ' + name)
 
             

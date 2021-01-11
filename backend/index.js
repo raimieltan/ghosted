@@ -37,19 +37,18 @@ app.use('/comments' , require("./routes/comments"))
 app.use("/group-messages", require("./routes/groupMessages.js"))
 
 
-let db;
-
 let PORT = 8000
 
-pool.connect( (err,client) => {
+pool.connect( (err) => {
     if(err){
 
         console.log(err)
     }
     else{
-        db = client
+     
         app.listen(PORT, () => {
             console.log(`Server has started on http://localhost:${PORT}`)
         })
     }   
-} )
+} 
+)
