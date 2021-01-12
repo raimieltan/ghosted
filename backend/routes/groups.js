@@ -3,7 +3,7 @@ const pool = require('../pool')
 const authorization = require('../middleware/authorization')
 
 
-router.get("/retrieve/" , async ( req,res ) => {
+router.get("/retrieve/", async (req, res) => {
     try {
 
 
@@ -11,27 +11,27 @@ router.get("/retrieve/" , async ( req,res ) => {
 
 
         res.json(groupQuery.rows)
-    
-        
+
+
     } catch (error) {
         console.error(error.message)
         res.status(500).send(error.message)
     }
 })
 
-router.get("/retrieve/joined" , authorization, async ( req,res ) => {
+router.get("/retrieve/joined", authorization, async (req, res) => {
     try {
 
         //destructure params
 
 
         //check if user is in group
-        const authCheck = await pool.query('SELECT * FROM group_sessions where user_id = $1' , [req.user])
-      
+        const authCheck = await pool.query('SELECT * FROM group_sessions where user_id = $1', [req.user])
 
-        if(authCheck.rows.length > 0){
-                //query group
-                const groupQuery = await pool.query(`
+
+        if (authCheck.rows.length > 0) {
+            //query group
+            const groupQuery = await pool.query(`
                 SELECT g.group_id, g.group_name
                 FROM group_sessions AS gs 
                     INNER JOIN groups AS g 
@@ -41,16 +41,16 @@ router.get("/retrieve/joined" , authorization, async ( req,res ) => {
                 WHERE u.user_id = $1`, [req.user])
 
 
-                res.json(groupQuery.rows)
-                //res json
+            res.json(groupQuery.rows)
+            //res json
         }
 
-        else{
-            res.json({msg: `You are not part of any group : ${req.user} ${id}`})
+        else {
+            res.json({ msg: `You are not part of any group : ${req.user} ${id}` })
         }
 
 
-        
+
     } catch (error) {
         console.error(error.message)
         res.status(500).send(error.message)
@@ -59,7 +59,7 @@ router.get("/retrieve/joined" , authorization, async ( req,res ) => {
 
 
 
-router.post("/join/:id" ,authorization, async (req, res ) => {
+router.post("/join/:id", authorization, async (req, res) => {
     try {
 
         //destructure id
@@ -67,18 +67,18 @@ router.post("/join/:id" ,authorization, async (req, res ) => {
         const { id } = req.params
 
         //check if user is in group
-        const authCheck = await pool.query('SELECT * FROM group_sessions where user_id = $1 and group_id = $2' , [req.user , id])
+        const authCheck = await pool.query('SELECT * FROM group_sessions where user_id = $1 and group_id = $2', [req.user, id])
 
-        if(authCheck.rows.length < 1){
+        if (authCheck.rows.length < 1) {
             //add user
-            const newUserInGroup = await pool.query('INSERT INTO group_sessions VALUES(default, $1, $2 )' , [id, req.user])
+            const newUserInGroup = await pool.query('INSERT INTO group_sessions VALUES(default, $1, $2 )', [id, req.user])
 
-            res.json({ joined: true})
+            res.json({ joined: true })
         }
-        else{
-            res.json({msg: "You are already in this group"})
+        else {
+            res.json({ msg: "You are already in this group" })
         }
-        
+
     } catch (error) {
         console.error(error.message)
         res.status(500).send(error.message)

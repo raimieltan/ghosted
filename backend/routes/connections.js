@@ -2,7 +2,7 @@ const router = require('express').Router()
 const pool = require('../pool.js')
 const authorization = require("../middleware/authorization.js")
 
-router.get("/show/following/:id" , authorization, async (req, res) => {
+router.get("/show/following/:id", authorization, async (req, res) => {
     try {
 
         const { id } = req.params
@@ -16,14 +16,14 @@ router.get("/show/following/:id" , authorization, async (req, res) => {
         WHERE c.user1_id = $1 and p.pic_type = 'profile'` , [id])
 
         res.json(following.rows)
-        
+
     } catch (error) {
         console.error(error.message)
         res.status(500).send(error.message)
     }
 })
 
-router.get("/show/followers/:id" , authorization, async (req, res) => {
+router.get("/show/followers/:id", authorization, async (req, res) => {
     try {
 
         const { id } = req.params
@@ -36,46 +36,46 @@ router.get("/show/followers/:id" , authorization, async (req, res) => {
             WHERE c.user2_id = $1 and p.pic_type = 'profile'` , [id])
 
         res.json(following.rows)
-        
+
     } catch (error) {
         console.error(error.message)
         res.status(500).send(error.message)
     }
 })
 
-router.post("/add/:id",authorization, async(req, res) => {
+router.post("/add/:id", authorization, async (req, res) => {
 
     try {
 
         const { id } = req.params
-    
+
         //check if there is a previous connection
-        const session = await pool.query("SELECT * FROM connections WHERE user1_id = $1 and user2_id = $2" , [req.user , id])
+        const session = await pool.query("SELECT * FROM connections WHERE user1_id = $1 and user2_id = $2", [req.user, id])
         //make connection id
 
-        if(session.rows.length > 0){
+        if (session.rows.length > 0) {
             return res.status(401).send("Followed already")
         }
 
-    
+
         //make follow
 
-        const connection = await pool.query("insert into connections values(default, $1, $2)" , [req.user, id])
+        const connection = await pool.query("insert into connections values(default, $1, $2)", [req.user, id])
 
         res.json("Successfully followed")
-        
+
     } catch (error) {
         console.error(error.message)
         res.status(500).send(error).message
     }
 })
 
-router.delete("/ghost/:id", authorization, async ( req, res ) => {
+router.delete("/ghost/:id", authorization, async (req, res) => {
     try {
 
         const { id } = req.params
-        
-        const ghostUser = await pool.query("DELETE FROM connections where user1_id = $1 and user2_id = $2 RETURNING *", [ req.user, id ])
+
+        const ghostUser = await pool.query("DELETE FROM connections where user1_id = $1 and user2_id = $2 RETURNING *", [req.user, id])
 
         res.json(ghostUser.rows[0])
     } catch (error) {

@@ -11,7 +11,7 @@ const authorization = (req, res, next) => {
   }
 
   try {
-  
+
     const verify = jwt.verify(token.slice(7), process.env.jwtSecret);
 
     req.user = verify.user;
@@ -22,4 +22,4 @@ const authorization = (req, res, next) => {
 
 };
 
-module.exports =  authorization;
+module.exports = authorization;

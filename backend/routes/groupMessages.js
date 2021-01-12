@@ -6,9 +6,9 @@ const { route } = require('./mail')
 
 //get messages
 
-router.get("/retrieve/:id", async(req, res) => {
+router.get("/retrieve/:id", async (req, res) => {
     try {
-        const { id }  = req.params
+        const { id } = req.params
 
         //query
 
@@ -22,19 +22,19 @@ router.get("/retrieve/:id", async(req, res) => {
         WHERE g.group_id = $1` , [id])
 
         res.json(messages.rows)
-        
+
     } catch (error) {
 
         console.error(error.message)
 
         res.send(500).send(error.message)
-        
+
     }
 })
 
 //post messages
 
-router.post("/send/:id" , authorization, async ( req, res ) => {
+router.post("/send/:id", authorization, async (req, res) => {
     try {
 
         //destructure
@@ -42,7 +42,7 @@ router.post("/send/:id" , authorization, async ( req, res ) => {
         const { message } = req.body
 
         //query
-        const newMessage = await pool.query('INSERT INTO messages VALUES(default, $1, $2, $3)' , [message, req.user, id])
+        const newMessage = await pool.query('INSERT INTO messages VALUES(default, $1, $2, $3)', [message, req.user, id])
 
         res.json('Message Sent')
     } catch (error) {

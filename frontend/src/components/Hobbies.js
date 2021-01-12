@@ -1,14 +1,14 @@
-import React, {useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import "./css/hobbies.css"
 
 
-const DisplayHobbies = ( { id }  ) => {
+const DisplayHobbies = ({ id }) => {
     const [hobbies, setHobbies] = useState([])
 
     const getHobbies = async () => {
         try {
-            const response = await fetch(`http://localhost:8000/hobbies/show/${id}` , {
-                headers: {'Authorization':'Bearer ' + localStorage.token }
+            const response = await fetch(`http://localhost:8000/hobbies/show/${id}`, {
+                headers: { 'Authorization': 'Bearer ' + localStorage.token }
             })
 
             const jsonData = await response.json();
@@ -16,14 +16,15 @@ const DisplayHobbies = ( { id }  ) => {
             setHobbies(jsonData)
         } catch (error) {
             console.error(error.message)
+            window.location.reload(false);
         }
 
     }
 
-    useEffect( () => {
+    useEffect(() => {
         getHobbies();
 
-        const interval = setInterval( () => {
+        const interval = setInterval(() => {
             getHobbies();
         }, 1000)
 
@@ -31,7 +32,7 @@ const DisplayHobbies = ( { id }  ) => {
     }, [id])
 
     return <div className="hobbies-container">
-        {hobbies.map( hobby => {
+        {hobbies.map(hobby => {
             return <div className="hobby-item" key={hobby.hobby_id}>
                 <p className="badge badge-light">{hobby.hobby_content}</p>
             </div>

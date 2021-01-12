@@ -36,6 +36,8 @@ app.use('/comments' , require("./routes/comments"))
 
 app.use("/group-messages", require("./routes/groupMessages.js"))
 
+app.use("/verify" , require("./routes/verify.js"))
+
 
 let PORT = 8000
 

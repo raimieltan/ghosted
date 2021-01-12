@@ -10,3 +10,8 @@
     text-align: center;
 }
 
+/* .feed {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: column wrap;
+} */

@@ -7,55 +7,56 @@ const UploadPhoto = ({ type }) => {
         setImage(event.target.files[0])
     };
 
-    const sendImage = async (event) => {
+    const sendImage = async () => {
         setImage({})
-  
+
         try {
 
             let formData = new FormData();
 
             formData.append("my-image", image)
-            formData.append("text" , "text")
+            formData.append("text", "text")
 
 
-            console.log(formData.entries())
 
-            if( type === 'profile'){
+            if (type === 'profile') {
                 const deletePrevious = await fetch('http://localhost:8000/photos/delete', {
                     method: "DELETE",
                     headers: {
-                        'Authorization':'Bearer ' + localStorage.token
+                        'Authorization': 'Bearer ' + localStorage.token
                     }
                 })
             }
 
 
-    
-            const newImage = await fetch(`http://localhost:8000/uploads/${type}` ,{
+
+            const newImage = await fetch(`http://localhost:8000/uploads/${type}`, {
                 method: "POST",
                 headers: {
-                    'Authorization':'Bearer ' + localStorage.token
+                    'Authorization': 'Bearer ' + localStorage.token
                 },
                 body: formData,
-    
+
             })
 
 
 
-            
+
         } catch (error) {
             console.error(error.message)
+            window.location.reload(false);
+
         }
 
     }
 
-    return(
-           
+    return (
+
         <div>
-                <input type="file" onChange={fileOnChange}/>
-                <button className="button-upload btn btn-light" onClick={sendImage}>Upload</button>
+            <input type="file" onChange={fileOnChange} />
+            <button className="button-upload btn btn-light" onClick={sendImage}>Upload</button>
         </div>
-    
+
 
     )
 }
