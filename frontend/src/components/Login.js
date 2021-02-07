@@ -51,7 +51,7 @@ const Login = ({ setAuth }) => {
     }
     return (
         <div className="login-container container">
-            <h1 className="text-center my-5 login-title">LOGIN</h1>
+            <h1 className="text-center my-5 login-title">LOGIN Mama mo kalbo</h1>
             <form onSubmit={onSubmitForm}>
                 <input type="email" name="email" placeholder="email" className="form-control my-3" value={email} onChange={e => onChange(e)} />
                 <input type="password" name="password" placeholder="password" className="form-control my-3" value={password} onChange={e => onChange(e)} />
